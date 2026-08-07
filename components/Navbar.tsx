@@ -3,12 +3,12 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingCart, X, Trash2 } from "lucide-react";
+import { ShoppingCart, X, Trash2, User } from "lucide-react";
 import { useCart } from "@/components/CartProvider";
 
 export function Navbar() {
   const { scrollYProgress } = useScroll();
-  const { items, cartCount, cartTotal, isCartOpen, setIsCartOpen, removeFromCart } = useCart();
+  const { items, cartCount, cartTotal, isCartOpen, setIsCartOpen, removeFromCart, itemPrice, isFirstOrder } = useCart();
   
   // The nav starts nearly invisible over the opening hero frame and gently increases in presence
   // as the cap-separation sequence begins (~15% scroll).
@@ -16,23 +16,30 @@ export function Navbar() {
 
   return (
     <>
+      <div className="fixed top-0 left-0 w-full bg-brand-gold text-black text-xs md:text-sm font-semibold tracking-widest uppercase py-2 z-50 overflow-hidden">
+        <div className="animate-marquee whitespace-nowrap">
+          Get ₹200 cashback on your first order! • Free shipping on orders over ₹1999 • Get ₹200 cashback on your first order! • Free shipping on orders over ₹1999 • Get ₹200 cashback on your first order! • Free shipping on orders over ₹1999 • Get ₹200 cashback on your first order!
+        </div>
+      </div>
       <motion.nav
         style={{ opacity: navOpacity }}
-        className="fixed top-6 left-1/2 -translate-x-1/2 z-40 flex items-center justify-between px-6 py-3 w-[90%] max-w-5xl rounded-full crystal-glass"
+        className="fixed top-12 left-1/2 -translate-x-1/2 z-40 flex items-center justify-between px-6 py-3 w-[90%] max-w-5xl rounded-full crystal-glass"
       >
         <div className="flex-1 flex items-center">
-          <Link href="/" className="text-brand-ivory font-bold tracking-tight text-lg">
+          <Link href="/" className="text-brand-gold font-serif font-normal tracking-wide text-lg">
             MAKULAYO
           </Link>
         </div>
 
-        <div className="hidden md:flex flex-1 items-center justify-center space-x-8 text-sm font-medium text-brand-ivory-muted">
+        <div className="hidden md:flex flex-1 items-center justify-center space-x-8 text-sm font-medium text-brand-ivory-muted tracking-[0.15em]">
           <Link href="/#collection" className="hover:text-brand-ivory transition-colors">Collection</Link>
           <Link href="/shipping" className="hover:text-brand-ivory transition-colors">Shipping</Link>
-          <Link href="/account" className="hover:text-brand-ivory transition-colors">Account</Link>
         </div>
 
         <div className="flex-1 flex items-center justify-end space-x-4">
+          <Link href="/account" className="relative p-2 text-brand-ivory hover:text-brand-gold transition-colors" aria-label="Account">
+            <User size={20} />
+          </Link>
           <button 
             onClick={() => setIsCartOpen(true)}
             className="relative p-2 text-brand-ivory hover:text-brand-gold transition-colors"
@@ -68,9 +75,9 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-full max-w-md bg-brand-surface border-l border-white/10 z-50 flex flex-col shadow-2xl"
+              className="fixed top-0 right-0 h-full w-full max-w-md bg-brand-surface border-l border-white/5 z-50 flex flex-col shadow-2xl"
             >
-              <div className="p-6 border-b border-white/10 flex justify-between items-center">
+              <div className="p-6 border-b border-white/5 flex justify-between items-center">
                 <h2 className="text-2xl font-bold text-brand-ivory">Your Cart</h2>
                 <button onClick={() => setIsCartOpen(false)} className="text-brand-ivory-muted hover:text-brand-ivory">
                   <X size={24} />
@@ -92,7 +99,10 @@ export function Navbar() {
                       <div className="flex-1">
                         <h4 className="font-semibold text-brand-ivory">{item.product.name}</h4>
                         <p className="text-sm text-brand-ivory-muted">Qty: {item.quantity}</p>
-                        <p className="text-brand-gold font-medium mt-1">${240 * item.quantity}</p>
+                        <div className="flex items-center gap-2 mt-1">
+                          <p className="text-brand-gold font-medium">₹{(itemPrice * item.quantity).toLocaleString('en-IN')}</p>
+                          {isFirstOrder && <p className="text-brand-ivory-muted line-through text-xs">₹{(1599 * item.quantity).toLocaleString('en-IN')}</p>}
+                        </div>
                       </div>
                       <button 
                         onClick={() => removeFromCart(item.product.id)}
@@ -106,11 +116,16 @@ export function Navbar() {
               </div>
 
               {items.length > 0 && (
-                <div className="p-6 border-t border-white/10 bg-black/20">
-                  <div className="flex justify-between text-lg font-bold text-brand-ivory mb-6">
+                <div className="p-6 border-t border-white/5 bg-black/20">
+                  <div className="flex justify-between text-lg font-bold text-brand-ivory mb-2">
                     <span>Subtotal</span>
-                    <span>${cartTotal}</span>
+                    <span>₹{cartTotal.toLocaleString('en-IN')}</span>
                   </div>
+                  {isFirstOrder && (
+                    <p className="text-brand-gold text-sm font-medium mb-6">
+                      ✨ You'll earn ₹200 cashback on this order!
+                    </p>
+                  )}
                   <Link 
                     href="/checkout" 
                     onClick={() => setIsCartOpen(false)}

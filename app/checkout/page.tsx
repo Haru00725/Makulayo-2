@@ -5,10 +5,11 @@ import { Navbar } from "@/components/Navbar";
 import { useCart } from "@/components/CartProvider";
 import { useAuth } from "@/components/AuthProvider";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function CheckoutPage() {
-  const { items, cartTotal, clearCart } = useCart();
-  const { user } = useAuth();
+  const { items, cartTotal, clearCart, isFirstOrder, itemPrice } = useCart();
+  const { user, updateProfile } = useAuth();
   const router = useRouter();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -33,6 +34,10 @@ export default function CheckoutPage() {
 
       const existingOrders = JSON.parse(localStorage.getItem("makulayo_orders") || "[]");
       localStorage.setItem("makulayo_orders", JSON.stringify([newOrder, ...existingOrders]));
+
+      if (isFirstOrder && user) {
+        updateProfile({ cashbackEarned: (user.cashbackEarned || 0) + 200 });
+      }
 
       clearCart();
       setIsProcessing(false);
@@ -61,12 +66,12 @@ export default function CheckoutPage() {
           <p className="text-brand-ivory-muted mb-8 text-lg">
             Your exquisite selection is being prepared for dispatch.
           </p>
-          <button 
-            onClick={() => router.push("/account/orders")}
+          <Link 
+            href="/account"
             className="crystal-glass-highlight crystal-glass px-8 py-4 rounded-xl text-brand-gold font-bold tracking-wide hover:brightness-125 transition-all"
           >
             View Your Orders
-          </button>
+          </Link>
         </div>
       </main>
     );
@@ -78,7 +83,7 @@ export default function CheckoutPage() {
       
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         <div>
-          <h1 className="text-4xl font-bold mb-8">Checkout</h1>
+          <h1 className="text-4xl font-serif font-light mb-8">Checkout</h1>
           <form id="checkout-form" onSubmit={handlePayment} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-brand-ivory-muted mb-2">Full Name</label>
@@ -101,13 +106,13 @@ export default function CheckoutPage() {
             {items.map(item => (
               <div key={item.product.id} className="flex justify-between text-brand-ivory-muted">
                 <span>{item.quantity}x {item.product.name}</span>
-                <span>${240 * item.quantity}</span>
+                <span>₹{(itemPrice * item.quantity).toLocaleString('en-IN')}</span>
               </div>
             ))}
           </div>
           <div className="border-t border-white/10 pt-6 mb-8 flex justify-between text-xl font-bold">
             <span>Total</span>
-            <span className="text-brand-gold">${cartTotal}</span>
+            <span className="text-brand-gold">₹{cartTotal.toLocaleString('en-IN')}</span>
           </div>
 
           <button 

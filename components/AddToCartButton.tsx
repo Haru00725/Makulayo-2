@@ -11,7 +11,7 @@ export function AddToCartButton({ product }: { product: Product }) {
       onClick={() => addToCart(product)}
       className="mt-12 crystal-glass-highlight crystal-glass px-10 py-5 rounded-full text-brand-gold text-lg font-bold tracking-wide hover:brightness-125 transition-all self-start"
     >
-      Acquire — $240
+      Acquire — ₹1,999
     </button>
   );
 }

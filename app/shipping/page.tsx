@@ -69,7 +69,7 @@ export default function ShippingPage() {
       
       <div className="flex-1 flex flex-col items-center p-6 mt-32 relative z-20 w-full max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-brand-ivory mb-4">Track Your Order</h1>
+          <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-brand-ivory mb-4">Track Your Order</h1>
           <p className="text-brand-ivory-muted text-lg max-w-md mx-auto">
             Enter your Makulayo tracking number below to see the status of your shipment.
           </p>

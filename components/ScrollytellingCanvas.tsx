@@ -90,7 +90,7 @@ export function ScrollytellingCanvas({ progress }: ScrollytellingCanvasProps) {
   }, [progress, isLoaded, images]);
 
   return (
-    <div className="fixed inset-0 w-full h-full bg-brand-void z-0">
+    <div className="fixed inset-0 w-full h-full bg-brand-void z-0 overflow-hidden">
       <canvas
         ref={canvasRef}
         style={{
@@ -98,10 +98,11 @@ export function ScrollytellingCanvas({ progress }: ScrollytellingCanvasProps) {
           height: "100%",
           display: "block",
           objectFit: "cover",
+          transform: "scale(1.25) translate(4%, 4%)",
         }}
       />
       {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-brand-void">
+        <div className="absolute inset-0 flex items-center justify-center bg-brand-void z-20">
           <span className="text-brand-ivory-muted text-sm tracking-widest uppercase">Loading Experience...</span>
         </div>
       )}

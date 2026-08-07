@@ -2,16 +2,35 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 
+export type Address = {
+  id: string;
+  street: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+};
+
 export type User = {
   id: string;
   email: string;
   name: string;
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+  birthdate?: string;
+  gender?: string;
+  addresses?: Address[];
+  totalSpent?: number;
+  cashbackEarned?: number;
 };
 
 type AuthContextType = {
   user: User | null;
   login: (email: string) => void;
   logout: () => void;
+  updateProfile: (data: Partial<User>) => void;
+  addAddress: (address: Omit<Address, "id">) => void;
   isLoading: boolean;
 };
 
@@ -31,10 +50,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = (email: string) => {
-    const newUser = {
+    // Generate mock order history data for cashback calculations
+    const mockTotalSpent = 15992; // e.g., 8 orders of ₹1,999
+    const mockCashback = mockTotalSpent * 0.05; // 5% cashback
+
+    const newUser: User = {
       id: "user_" + Math.random().toString(36).substring(2, 9),
       email,
       name: email.split("@")[0],
+      firstName: email.split("@")[0],
+      lastName: "",
+      phone: "",
+      birthdate: "",
+      gender: "prefer-not-to-say",
+      addresses: [],
+      totalSpent: mockTotalSpent,
+      cashbackEarned: mockCashback,
     };
     setUser(newUser);
     localStorage.setItem("makulayo_user", JSON.stringify(newUser));
@@ -45,8 +76,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("makulayo_user");
   };
 
+  const updateProfile = (data: Partial<User>) => {
+    if (!user) return;
+    const updatedUser = { ...user, ...data, name: data.firstName || user.firstName || user.name };
+    setUser(updatedUser);
+    localStorage.setItem("makulayo_user", JSON.stringify(updatedUser));
+  };
+
+  const addAddress = (address: Omit<Address, "id">) => {
+    if (!user) return;
+    const newAddress: Address = {
+      ...address,
+      id: "addr_" + Math.random().toString(36).substring(2, 9),
+    };
+    const updatedUser = {
+      ...user,
+      addresses: [...(user.addresses || []), newAddress],
+    };
+    setUser(updatedUser);
+    localStorage.setItem("makulayo_user", JSON.stringify(updatedUser));
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, isLoading }}>
+    <AuthContext.Provider value={{ user, login, logout, updateProfile, addAddress, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

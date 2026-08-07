@@ -24,7 +24,7 @@ export default function Home() {
 
   const [progress, setProgress] = useState(0);
   const { user } = useAuth();
-  const { addToCart } = useCart();
+  const { addToCart, isFirstOrder, itemPrice } = useCart();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [hasShownAuth, setHasShownAuth] = useState(false);
 
@@ -50,12 +50,29 @@ export default function Home() {
         </div>
       </div>
       
+      {/* Philosophy Section */}
+      <section className="bg-brand-void py-32 px-8 relative z-20">
+        {/* Fade overlay at the top */}
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="text-sm tracking-[0.2em] uppercase text-brand-gold mb-6">Our Philosophy</h2>
+          <p className="text-3xl md:text-5xl font-serif font-light text-brand-ivory leading-tight mb-12">
+            We don't make fifty fragrances. We make five. By restricting our canvas, we force ourselves to achieve perfection.
+          </p>
+          <Link href="/about" className="inline-flex items-center space-x-2 text-brand-ivory hover:text-brand-gold transition-colors pb-1 border-b border-brand-gold/30 hover:border-brand-gold font-medium tracking-[0.15em]">
+            <span>Discover The Brand</span>
+            <span className="text-xl">→</span>
+          </Link>
+        </div>
+      </section>
+
       {/* 
         Product Showcase
       */}
       <div className="min-h-screen bg-brand-surface py-24 px-8 relative z-20">
-        <div className="max-w-7xl mx-auto flex flex-col items-center">
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-brand-gold mb-16 text-center drop-shadow-md">
+        <div className="max-w-7xl mx-auto flex flex-col items-start w-full">
+          <h2 className="text-5xl md:text-7xl font-serif font-light tracking-tight text-brand-gold mb-16 text-left drop-shadow-md">
             The Exquisite Ones
           </h2>
           
@@ -75,21 +92,24 @@ export default function Home() {
                       className="object-cover transition-transform duration-700 group-hover:scale-110" 
                     />
                   </div>
-                  <h3 className="text-2xl font-semibold text-brand-ivory mb-2 group-hover:text-brand-gold transition-colors">
+                  <h3 className="text-2xl font-serif font-normal text-brand-ivory mb-2 group-hover:text-brand-gold transition-colors">
                     {product.name}
                   </h3>
                   <p className="text-brand-ivory-muted text-center text-xs mb-4 line-clamp-2">
                     {product.notes.top} • {product.notes.heart} • {product.notes.base}
                   </p>
                   
-                  <div className="flex items-center justify-between w-full mt-auto pt-4 border-t border-white/10">
-                    <span className="text-brand-gold font-bold text-lg">$240</span>
+                  <div className="flex items-center justify-between w-full mt-auto pt-4 border-t border-white/5">
+                    <div className="flex flex-col">
+                      <span className="text-brand-gold font-bold text-lg">₹{itemPrice.toLocaleString('en-IN')}</span>
+                      {isFirstOrder && <span className="text-brand-ivory-muted line-through text-xs">₹1,599</span>}
+                    </div>
                     <button 
                       onClick={(e) => {
                         e.preventDefault();
                         addToCart(product);
                       }}
-                      className="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-gold hover:text-black flex items-center justify-center transition-colors border border-white/10 text-xl font-light"
+                      className="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-gold hover:text-black flex items-center justify-center transition-colors border border-white/5 text-xl font-light"
                       aria-label="Add to cart"
                     >
                       +

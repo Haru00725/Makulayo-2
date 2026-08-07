@@ -40,24 +40,28 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           
           {/* Right: Details */}
           <div className="flex flex-col justify-center">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">{product.name}</h1>
-            <p className="text-xl text-brand-ivory-muted mb-12 leading-relaxed">
+            <h1 className="text-5xl md:text-7xl font-serif font-normal tracking-tight mb-2">{product.name}</h1>
+            {product.tagline && (
+              <p className="text-2xl font-serif font-light text-brand-gold mb-6 italic">{product.tagline}</p>
+            )}
+            
+            <p className="text-xl text-brand-ivory-muted mb-12 leading-relaxed whitespace-pre-wrap">
               {product.description}
             </p>
             
             <div className="space-y-8 crystal-glass p-8 rounded-3xl">
-              <h3 className="text-2xl font-semibold tracking-wide text-brand-gold">Fragrance Architecture</h3>
+              <h3 className="text-sm tracking-[0.2em] uppercase font-semibold text-brand-gold">Fragrance Architecture</h3>
               <div className="grid grid-cols-1 gap-6">
                 <div>
-                  <p className="text-xs tracking-widest uppercase text-brand-gold/60 mb-1">Top</p>
+                  <p className="text-xs tracking-[0.2em] uppercase text-brand-gold/60 mb-1">Top</p>
                   <p className="text-lg">{product.notes.top}</p>
                 </div>
                 <div>
-                  <p className="text-xs tracking-widest uppercase text-brand-gold/60 mb-1">Heart</p>
+                  <p className="text-xs tracking-[0.2em] uppercase text-brand-gold/60 mb-1">Heart</p>
                   <p className="text-lg">{product.notes.heart}</p>
                 </div>
                 <div>
-                  <p className="text-xs tracking-widest uppercase text-brand-gold/60 mb-1">Base</p>
+                  <p className="text-xs tracking-[0.2em] uppercase text-brand-gold/60 mb-1">Base</p>
                   <p className="text-lg">{product.notes.base}</p>
                 </div>
               </div>
@@ -68,8 +72,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         </div>
         
         {/* Mock Reviews Section */}
-        <div className="border-t border-white/10 pt-24 mb-32">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-16 text-center">Voices of the Few</h2>
+        <div className="border-t border-white/5 pt-24 mb-32">
+          <h2 className="text-4xl md:text-5xl font-serif font-light tracking-tight mb-16 text-center">Voices of the Few</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -84,7 +88,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   </div>
                   <p className="text-brand-ivory-muted italic text-lg mb-8 leading-relaxed">&ldquo;{review.text}&rdquo;</p>
                 </div>
-                <p className="font-bold tracking-widest text-sm uppercase text-brand-gold">{review.author}</p>
+                <p className="font-medium tracking-[0.2em] text-sm uppercase text-brand-gold">{review.author}</p>
               </div>
             ))}
           </div>
