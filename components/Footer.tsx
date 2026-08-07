@@ -7,12 +7,12 @@ export function Footer() {
     <footer className="relative z-20 rounded-t-[2.5rem] md:rounded-t-[4rem] overflow-hidden -mt-12 shadow-[0_-20px_50px_rgba(0,0,0,0.8)] flex flex-col">
       
       {/* Trust Badges Banner */}
-      <div className="bg-brand-ivory text-black py-16 px-8 relative z-10">
+      <div className="bg-brand-ivory text-black py-8 px-8 relative z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0 md:divide-x md:divide-black/10">
           <div className="flex flex-col items-center text-center px-4">
             <Truck className="w-8 h-8 mb-4 stroke-[1.5] text-brand-gold" />
             <h4 className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-1">Free Shipping</h4>
-            <p className="text-[10px] sm:text-xs text-black/60">On orders over ₹999</p>
+            <p className="text-[10px] sm:text-xs text-black/60">On orders over ₹1999</p>
           </div>
           <div className="flex flex-col items-center text-center px-4">
             <Gift className="w-8 h-8 mb-4 stroke-[1.5] text-brand-gold" />

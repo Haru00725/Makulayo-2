@@ -20,7 +20,7 @@ export default function FAQPage() {
 
           <section>
             <h2 className="text-xl text-brand-ivory font-semibold mb-2">Do you offer international shipping?</h2>
-            <p>We currently ship across India with free standard delivery on orders over ₹999. We are actively working on expanding our international shipping capabilities to bring Makulayo to more fragrance enthusiasts worldwide.</p>
+            <p>We currently ship across India with free standard delivery on orders over ₹1999. We are actively working on expanding our international shipping capabilities to bring Makulayo to more fragrance enthusiasts worldwide.</p>
           </section>
 
           <section>
