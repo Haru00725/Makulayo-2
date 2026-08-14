@@ -93,13 +93,7 @@ export function ScrollytellingCanvas({ progress }: ScrollytellingCanvasProps) {
     <div className="fixed inset-0 w-full h-full bg-brand-void z-0 overflow-hidden">
       <canvas
         ref={canvasRef}
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "block",
-          objectFit: "cover",
-          transform: "scale(1.25) translate(4%, 4%)",
-        }}
+        className="w-full h-full block object-cover max-md:scale-100 md:scale-125 md:translate-x-[4%] md:translate-y-[4%]"
       />
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-brand-void z-20">

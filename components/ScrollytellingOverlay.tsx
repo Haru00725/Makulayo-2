@@ -28,8 +28,8 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
         style={{ opacity: heroOpacity, y: heroY }}
         className="absolute inset-0 flex flex-col items-center justify-center text-center mt-32"
       >
-        <h1 className="flex items-start text-6xl md:text-8xl mb-4">
-          <span className="logo-text">MAKULAYO</span><span className="text-xl md:text-3xl text-brand-gold ml-2 mt-2 font-sans font-medium">™</span>
+        <h1 className="flex items-start text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4">
+          <span className="logo-text">MAKULAYO</span><span className="text-sm sm:text-base md:text-2xl lg:text-3xl text-brand-gold ml-1 sm:ml-2 mt-1 sm:mt-2 font-sans font-medium">™</span>
         </h1>
         <p className="text-xl md:text-2xl font-serif font-light text-brand-ivory-muted mb-2">
           Crafted for those who notice.
