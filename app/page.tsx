@@ -76,8 +76,8 @@ export default function Home() {
             The Exquisite Ones
           </h2>
           
-          <div className="w-full overflow-hidden pause-marquee relative py-8 -mx-8 px-8">
-            <div className="flex gap-12 w-max animate-marquee pr-12">
+          <div className="w-full overflow-x-auto md:overflow-hidden pause-marquee relative py-8 -mx-8 px-8" style={{ scrollbarWidth: 'none' }}>
+            <div className="flex gap-12 w-max max-md:!animate-none animate-marquee pr-12">
               {[...products, ...products, ...products, ...products].map((product, i) => (
                 <Link 
                   key={`${product.id}-${i}`} 

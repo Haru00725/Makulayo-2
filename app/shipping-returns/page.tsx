@@ -10,10 +10,10 @@ export default function ShippingReturnsPage() {
         <div className="space-y-8 text-lg leading-relaxed">
           <section>
             <h2 className="text-lg tracking-[0.15em] uppercase text-brand-ivory font-semibold mb-4">Shipping Policy</h2>
-            <p className="mb-4">We offer complimentary standard shipping on all orders over ₹1999. Orders are processed within 1-2 business days.</p>
-            <ul className="list-disc pl-6 space-y-2 text-brand-ivory/80">
-              <li>Standard Shipping (5-7 business days): ₹99 (Free over ₹1999)</li>
-              <li>Express Shipping (2-3 business days): ₹249</li>
+            <p className="mb-4">We offer complimentary standard shipping on all orders over ₹1999. Orders are processed and delivered within 2 business days.</p>
+            <ul className="list-disc pl-5 mb-8 space-y-2 text-brand-ivory-muted">
+              <li>Standard Shipping (2 business days): ₹99 (Free over ₹1999)</li>
+              <li>Express Delivery (1 business day): ₹249</li>
               <li>Overnight Delivery: ₹499</li>
             </ul>
           </section>
