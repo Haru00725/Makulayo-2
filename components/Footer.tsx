@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Truck, Gift, RefreshCcw, Lock } from "lucide-react";
+import { ArrowRight, Truck, RefreshCcw, Lock, Gem } from "lucide-react";
 
 export function Footer() {
   return (
@@ -13,6 +13,12 @@ export function Footer() {
             <Truck className="w-8 h-8 mb-4 stroke-[1.5] text-brand-gold" />
             <h4 className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-1">Free Shipping</h4>
             <p className="text-[10px] sm:text-xs text-black/60">On orders over ₹1999</p>
+          </div>
+
+          <div className="flex flex-col items-center text-center px-4">
+            <Gem className="w-8 h-8 mb-4 stroke-[1.5] text-brand-gold" />
+            <h4 className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-1">True Luxury</h4>
+            <p className="text-[10px] sm:text-xs text-black/60">Finest ingredients</p>
           </div>
 
           <div className="flex flex-col items-center text-center px-4">
