@@ -18,7 +18,7 @@ export function Navbar() {
     <>
       <div className="fixed top-0 left-0 w-full bg-brand-gold text-black text-xs md:text-sm font-semibold tracking-widest uppercase py-2 z-50 overflow-hidden">
         <div className="animate-marquee whitespace-nowrap">
-          Get ₹200 cashback on your first order! • Free shipping on orders over ₹1999 • Get ₹200 cashback on your first order! • Free shipping on orders over ₹1999 • Get ₹200 cashback on your first order! • Free shipping on orders over ₹1999 • Get ₹200 cashback on your first order!
+          Get 20% discount on your first order! • Free shipping on orders over ₹1999 • Get 20% discount on your first order! • Free shipping on orders over ₹1999 • Get 20% discount on your first order! • Free shipping on orders over ₹1999 • Get 20% discount on your first order!
         </div>
       </div>
       <motion.nav
@@ -26,8 +26,8 @@ export function Navbar() {
         className="fixed top-12 left-1/2 -translate-x-1/2 z-40 flex items-center justify-between px-6 py-3 w-[90%] max-w-5xl rounded-full crystal-glass"
       >
         <div className="flex-1 flex items-center">
-          <Link href="/" className="text-brand-gold font-serif font-normal tracking-wide text-lg">
-            MAKULAYO
+          <Link href="/" className="flex items-start">
+            <span className="logo-text text-lg">MAKULAYO</span><span className="text-[10px] text-brand-gold ml-0.5 mt-0.5 font-sans font-medium">™</span>
           </Link>
         </div>
 
@@ -123,7 +123,7 @@ export function Navbar() {
                   </div>
                   {isFirstOrder && (
                     <p className="text-brand-gold text-sm font-medium mb-6">
-                      ✨ You'll earn ₹200 cashback on this order!
+                      ✨ You'll get a 20% discount on this order!
                     </p>
                   )}
                   <Link 

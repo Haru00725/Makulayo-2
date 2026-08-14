@@ -28,14 +28,14 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
         style={{ opacity: heroOpacity, y: heroY }}
         className="absolute inset-0 flex flex-col items-center justify-center text-center mt-32"
       >
-        <h1 className="text-6xl md:text-8xl font-serif font-light tracking-wide text-brand-gold mb-4">
-          MAKULAYO
+        <h1 className="flex items-start text-6xl md:text-8xl mb-4">
+          <span className="logo-text">MAKULAYO</span><span className="text-xl md:text-3xl text-brand-gold ml-2 mt-2 font-sans font-medium">™</span>
         </h1>
         <p className="text-xl md:text-2xl font-serif font-light text-brand-ivory-muted mb-2">
           Crafted for those who notice.
         </p>
         <p className="text-sm md:text-base text-brand-ivory-muted/70 tracking-[0.2em] uppercase">
-          Five Eau de Parfums. No compromises.
+          Exquisite Eau de Parfums. No compromises.
         </p>
       </motion.div>
 
@@ -80,7 +80,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
           One spray. The whole room notices.
         </h2>
         <p className="text-xl text-brand-ivory-muted max-w-2xl">
-          Wear it once and you'll understand why we only make five.
+          Wear it once and you'll understand true luxury.
         </p>
       </motion.div>
     </div>

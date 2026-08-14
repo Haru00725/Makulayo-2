@@ -14,8 +14,8 @@ export default function AboutPage() {
           </section>
 
           <section>
-            <h2 className="text-lg tracking-[0.15em] uppercase text-brand-gold font-semibold mb-4 border-b border-white/5 pb-2">The Rule of Five</h2>
-            <p>We do not make fifty fragrances. We make five. By restricting our canvas, we force ourselves to achieve perfection. Each Makulayo scent is the result of hundreds of iterations, meticulously balanced until it speaks perfectly.</p>
+            <h2 className="text-lg tracking-[0.15em] uppercase text-brand-gold font-semibold mb-4 border-b border-white/5 pb-2">True Sophistication</h2>
+            <p>We craft fragrances of unparalleled luxury and refinement. Each Makulayo scent is an extraordinary journey of the senses, blending the world's most exquisite ingredients to deliver a truly opulent experience that lingers long after you leave.</p>
           </section>
 
           <section>

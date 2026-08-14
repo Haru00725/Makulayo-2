@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-type Tab = "profile" | "orders" | "address" | "cashback";
+type Tab = "profile" | "orders" | "address";
 
 export default function AccountPage() {
   const { user, login, logout, updateProfile, addAddress, isLoading } = useAuth();
@@ -265,23 +265,7 @@ export default function AccountPage() {
           </div>
         );
 
-      case "cashback":
-        return (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-serif font-light mb-6 text-brand-ivory">Rewards</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="border border-white/10 p-8 rounded-3xl bg-gradient-to-br from-white/5 to-transparent flex flex-col items-center justify-center text-center">
-                <p className="text-sm uppercase tracking-widest text-brand-ivory-muted mb-2">Total Amount Spent</p>
-                <p className="text-4xl font-serif font-light text-brand-ivory">₹{user.totalSpent?.toLocaleString('en-IN') || "0"}</p>
-              </div>
-              <div className="border border-brand-gold/30 p-8 rounded-3xl bg-gradient-to-br from-brand-gold/10 to-transparent flex flex-col items-center justify-center text-center relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/20 blur-[50px] rounded-full pointer-events-none" />
-                <p className="text-sm uppercase tracking-widest text-brand-ivory-muted mb-2">Makulayo Cashback</p>
-                <p className="text-4xl font-serif font-light text-brand-gold">₹{user.cashbackEarned?.toLocaleString('en-IN') || "0"}</p>
-              </div>
-            </div>
-          </div>
-        );
+
     }
   };
 
@@ -313,7 +297,7 @@ export default function AccountPage() {
                   { id: "profile", label: "Profile" },
                   { id: "orders", label: "Orders" },
                   { id: "address", label: "Address Book" },
-                  { id: "cashback", label: "Cashback" },
+
                 ].map((tab) => (
                   <button
                     key={tab.id}

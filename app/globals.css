@@ -11,6 +11,19 @@
   --color-brand-ember: #6E1E22;
   --font-sans: var(--font-inter);
   --font-serif: var(--font-cormorant);
+  --font-logo: var(--font-montserrat);
+}
+
+.logo-text {
+  font-family: var(--font-logo), sans-serif;
+  background: linear-gradient(to bottom, #d6ae63 0%, #e8c678 30%, #f5e2a3 50%, #c49942 70%, #9e7a27 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  display: inline-block;
 }
 
 :root {

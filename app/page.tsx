@@ -58,7 +58,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="text-sm tracking-[0.2em] uppercase text-brand-gold mb-6">Our Philosophy</h2>
           <p className="text-3xl md:text-5xl font-serif font-light text-brand-ivory leading-tight mb-12">
-            We don't make fifty fragrances. We make five. By restricting our canvas, we force ourselves to achieve perfection.
+            We craft fragrances of unparalleled luxury. By using only the finest ingredients, we ensure every drop embodies true sophistication.
           </p>
           <Link href="/about" className="inline-flex items-center space-x-2 text-brand-ivory hover:text-brand-gold transition-colors pb-1 border-b border-brand-gold/30 hover:border-brand-gold font-medium tracking-[0.15em]">
             <span>Discover The Brand</span>

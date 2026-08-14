@@ -25,7 +25,7 @@ export default function FAQPage() {
 
           <section>
             <h2 className="text-xl text-brand-ivory font-semibold mb-2">Can I purchase a sample before committing to a full bottle?</h2>
-            <p>Absolutely. We offer a Discovery Set that includes all five of our signature scents, allowing you to experience the full Makulayo collection on your skin before making a choice.</p>
+            <p>Absolutely. We offer a Discovery Set that includes all of our signature scents, allowing you to experience the full Makulayo collection on your skin before making a choice.</p>
           </section>
         </div>
       </div>

@@ -14,11 +14,7 @@ export function Footer() {
             <h4 className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-1">Free Shipping</h4>
             <p className="text-[10px] sm:text-xs text-black/60">On orders over ₹1999</p>
           </div>
-          <div className="flex flex-col items-center text-center px-4">
-            <Gift className="w-8 h-8 mb-4 stroke-[1.5] text-brand-gold" />
-            <h4 className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-1">Complimentary Samples</h4>
-            <p className="text-[10px] sm:text-xs text-black/60">With every order</p>
-          </div>
+
           <div className="flex flex-col items-center text-center px-4">
             <RefreshCcw className="w-8 h-8 mb-4 stroke-[1.5] text-brand-gold" />
             <h4 className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-1">Easy Returns</h4>
@@ -49,11 +45,11 @@ export function Footer() {
         
         {/* Brand & Newsletter */}
         <div className="md:col-span-2 space-y-8">
-          <h2 className="text-4xl md:text-5xl font-serif font-light tracking-wide text-brand-gold">
-            MAKULAYO
+          <h2 className="flex items-start text-4xl md:text-5xl">
+            <span className="logo-text">MAKULAYO</span><span className="text-sm text-brand-gold ml-1 mt-1 font-sans font-medium">™</span>
           </h2>
           <p className="text-lg max-w-sm leading-relaxed">
-            Five Eau de Parfums. Crafted without compromise for those who notice the details.
+            Exquisite Eau de Parfums. Crafted without compromise for those who notice the details.
           </p>
           <div className="pt-4">
             <h4 className="text-sm font-semibold tracking-[0.2em] uppercase text-brand-ivory mb-4">Join The Few</h4>

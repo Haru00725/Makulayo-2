@@ -35,9 +35,7 @@ export default function CheckoutPage() {
       const existingOrders = JSON.parse(localStorage.getItem("makulayo_orders") || "[]");
       localStorage.setItem("makulayo_orders", JSON.stringify([newOrder, ...existingOrders]));
 
-      if (isFirstOrder && user) {
-        updateProfile({ cashbackEarned: (user.cashbackEarned || 0) + 200 });
-      }
+
 
       clearCart();
       setIsProcessing(false);

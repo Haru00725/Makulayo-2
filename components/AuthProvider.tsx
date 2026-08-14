@@ -22,7 +22,7 @@ export type User = {
   gender?: string;
   addresses?: Address[];
   totalSpent?: number;
-  cashbackEarned?: number;
+
 };
 
 type AuthContextType = {
@@ -50,9 +50,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = (email: string) => {
-    // Generate mock order history data for cashback calculations
     const mockTotalSpent = 15992; // e.g., 8 orders of ₹1,999
-    const mockCashback = mockTotalSpent * 0.05; // 5% cashback
 
     const newUser: User = {
       id: "user_" + Math.random().toString(36).substring(2, 9),
@@ -65,7 +63,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       gender: "prefer-not-to-say",
       addresses: [],
       totalSpent: mockTotalSpent,
-      cashbackEarned: mockCashback,
+
     };
     setUser(newUser);
     localStorage.setItem("makulayo_user", JSON.stringify(newUser));
