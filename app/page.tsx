@@ -89,7 +89,7 @@ export default function Home() {
                       src={product.image} 
                       alt={product.name} 
                       fill 
-                      className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                      className="object-contain transition-transform duration-700 group-hover:scale-110" 
                     />
                   </div>
                   <h3 className="text-2xl font-serif font-normal text-brand-ivory mb-2 group-hover:text-brand-gold transition-colors">

@@ -94,7 +94,7 @@ export function Navbar() {
                   items.map((item) => (
                     <div key={item.product.id} className="flex gap-4 items-center crystal-glass p-4 rounded-2xl">
                       <div className="relative w-20 h-20 bg-white/5 rounded-xl overflow-hidden flex-shrink-0">
-                        <Image src={item.product.image} alt={item.product.name} fill className="object-cover" />
+                        <Image src={item.product.image} alt={item.product.name} fill className="object-contain" />
                       </div>
                       <div className="flex-1">
                         <h4 className="font-semibold text-brand-ivory">{item.product.name}</h4>

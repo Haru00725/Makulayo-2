@@ -187,7 +187,7 @@ export default function AccountPage() {
                       {order.items.map((item: any, i: number) => (
                         <div key={i} className="flex items-center gap-4">
                           <div className="relative w-16 h-16 bg-white/5 rounded-xl overflow-hidden flex-shrink-0">
-                            <Image src={item.product.image} alt={item.product.name} fill className="object-cover" />
+                            <Image src={item.product.image} alt={item.product.name} fill className="object-contain" />
                           </div>
                           <div>
                             <p className="font-semibold text-brand-ivory">{item.product.name}</p>
