@@ -6,6 +6,7 @@ import { useCart } from "@/components/CartProvider";
 import { useAuth } from "@/components/AuthProvider";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Script from "next/script";
 
 export default function CheckoutPage() {
   const { items, cartTotal, clearCart, isFirstOrder, itemPrice } = useCart();
@@ -16,31 +17,86 @@ export default function CheckoutPage() {
   const [success, setSuccess] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", address: "" });
 
-  const handlePayment = (e: React.FormEvent) => {
+  const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
 
-    // Mock Razorpay Flow
-    setTimeout(() => {
-      // Create Order
-      const newOrder = {
-        id: "ord_" + Math.random().toString(36).substring(2, 9),
-        date: new Date().toISOString(),
-        items: [...items],
-        total: cartTotal,
-        status: "Processing",
-        shippingDetails: form
+    try {
+      const createOrderRes = await fetch("/api/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: cartTotal * 100 }), // Amount in paise
+      });
+      const order = await createOrderRes.json();
+
+      if (!createOrderRes.ok) throw new Error(order.error || "Failed to create order");
+
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        amount: order.amount,
+        currency: order.currency,
+        name: "MAKULAYO",
+        description: "Exquisite Fragrances",
+        order_id: order.order_id,
+        handler: async function (response: any) {
+          try {
+            const verifyRes = await fetch("/api/verify-payment", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(response),
+            });
+            const verifyResult = await verifyRes.json();
+
+            if (!verifyRes.ok) throw new Error(verifyResult.error || "Payment verification failed");
+
+            // Success - Mock DB update
+            const newOrder = {
+              id: order.order_id,
+              date: new Date().toISOString(),
+              items: [...items],
+              total: cartTotal,
+              status: "Processing",
+              shippingDetails: form,
+            };
+
+            const existingOrders = JSON.parse(localStorage.getItem("makulayo_orders") || "[]");
+            localStorage.setItem("makulayo_orders", JSON.stringify([newOrder, ...existingOrders]));
+
+            clearCart();
+            setSuccess(true);
+          } catch (err) {
+            console.error(err);
+            alert("Payment verification failed. Please contact support.");
+          } finally {
+            setIsProcessing(false);
+          }
+        },
+        prefill: {
+          name: form.name,
+          contact: form.phone,
+        },
+        theme: {
+          color: "#D4AF37", // brand-gold
+        },
+        modal: {
+          ondismiss: function () {
+            setIsProcessing(false);
+          },
+        },
       };
 
-      const existingOrders = JSON.parse(localStorage.getItem("makulayo_orders") || "[]");
-      localStorage.setItem("makulayo_orders", JSON.stringify([newOrder, ...existingOrders]));
-
-
-
-      clearCart();
+      const rzp = new (window as any).Razorpay(options);
+      rzp.on("payment.failed", function (response: any) {
+        console.error(response.error);
+        alert(`Payment failed: ${response.error.description}`);
+        setIsProcessing(false);
+      });
+      rzp.open();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to initiate checkout. Please try again.");
       setIsProcessing(false);
-      setSuccess(true);
-    }, 2000);
+    }
   };
 
   if (!user) {
@@ -77,6 +133,7 @@ export default function CheckoutPage() {
 
   return (
     <main className="bg-brand-void min-h-screen text-brand-ivory pt-32 px-8 pb-24">
+      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
       <Navbar />
       
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
