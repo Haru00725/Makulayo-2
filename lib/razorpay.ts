@@ -1,13 +1,24 @@
 import Razorpay from "razorpay";
 import crypto from "crypto";
 
-export const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID!,
-    key_secret: process.env.RAZORPAY_KEY_SECRET!,
-});
+// Lazy initialize to prevent build errors on Vercel if env vars are missing during build
+let razorpayInstance: Razorpay | null = null;
+
+function getRazorpay() {
+    if (!razorpayInstance) {
+        if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+            throw new Error("Razorpay API keys are missing in environment variables");
+        }
+        razorpayInstance = new Razorpay({
+            key_id: process.env.RAZORPAY_KEY_ID,
+            key_secret: process.env.RAZORPAY_KEY_SECRET,
+        });
+    }
+    return razorpayInstance;
+}
 
 export async function createRazorpayOrder(amountInRupees: number, receipt: string) {
-    return razorpay.orders.create({
+    return getRazorpay().orders.create({
         amount: Math.round(amountInRupees * 100), // Razorpay wants paise
         currency: "INR",
         receipt,
