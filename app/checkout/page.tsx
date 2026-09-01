@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { useCart } from "@/components/CartProvider";
 import { useAuth } from "@/components/AuthProvider";
+import { AuthModal } from "@/components/AuthModal";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Script from "next/script";
@@ -99,11 +100,23 @@ export default function CheckoutPage() {
     }
   };
 
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
   if (!user) {
     return (
       <main className="bg-brand-void min-h-screen text-brand-ivory pt-32 px-8 flex items-center justify-center">
         <Navbar />
-        <p className="text-xl">Please return to the home page and sign in first.</p>
+        <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+        <div className="crystal-glass p-10 rounded-3xl max-w-md text-center">
+          <h2 className="text-2xl font-serif font-light mb-4">Sign in to Continue</h2>
+          <p className="text-brand-ivory-muted mb-8 text-sm">You need to be signed in to complete your purchase.</p>
+          <button
+            onClick={() => setIsAuthModalOpen(true)}
+            className="w-full py-4 rounded-xl crystal-glass-highlight crystal-glass text-brand-gold font-semibold tracking-wide hover:brightness-125 transition-all"
+          >
+            Sign In / Create Account
+          </button>
+        </div>
       </main>
     );
   }

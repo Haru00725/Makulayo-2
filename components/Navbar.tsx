@@ -1,14 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ShoppingCart, X, Trash2, User } from "lucide-react";
 import { useCart } from "@/components/CartProvider";
+import { useAuth } from "@/components/AuthProvider";
+import { AuthModal } from "@/components/AuthModal";
 
 export function Navbar() {
   const { scrollYProgress } = useScroll();
   const { items, cartCount, cartTotal, isCartOpen, setIsCartOpen, removeFromCart, itemPrice, isFirstOrder } = useCart();
+  const { user } = useAuth();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   
   // The nav starts nearly invisible over the opening hero frame and gently increases in presence
   // as the cap-separation sequence begins (~15% scroll).
@@ -16,6 +21,7 @@ export function Navbar() {
 
   return (
     <>
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
       <div className="fixed top-0 left-0 w-full bg-brand-gold text-black text-xs md:text-sm font-semibold tracking-widest uppercase py-2 z-50 overflow-hidden">
         <div className="animate-marquee whitespace-nowrap">
           Get 20% discount on your first order! • Free shipping on orders over ₹1999 • Get 20% discount on your first order! • Free shipping on orders over ₹1999 • Get 20% discount on your first order! • Free shipping on orders over ₹1999 • Get 20% discount on your first order!
@@ -37,9 +43,21 @@ export function Navbar() {
         </div>
 
         <div className="flex-1 flex items-center justify-end space-x-4">
-          <Link href="/account" className="relative p-2 text-brand-ivory hover:text-brand-gold transition-colors" aria-label="Account">
-            <User size={20} />
-          </Link>
+          {user ? (
+            <Link href="/account" className="relative p-2 text-brand-ivory hover:text-brand-gold transition-colors" aria-label="Account">
+              <div className="w-7 h-7 bg-brand-gold/15 rounded-full flex items-center justify-center border border-brand-gold/30">
+                <span className="text-[11px] font-bold text-brand-gold uppercase">{user.name.charAt(0)}</span>
+              </div>
+            </Link>
+          ) : (
+            <button
+              onClick={() => setIsAuthModalOpen(true)}
+              className="relative p-2 text-brand-ivory hover:text-brand-gold transition-colors"
+              aria-label="Sign in"
+            >
+              <User size={20} />
+            </button>
+          )}
           <button 
             onClick={() => setIsCartOpen(true)}
             className="relative p-2 text-brand-ivory hover:text-brand-gold transition-colors"

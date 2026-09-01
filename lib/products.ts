@@ -40,7 +40,7 @@ export const products: Product[] = [
     bestWorn: "Ideal for Spring, Summer, and Autumn, whether you're at the office, the gym, a casual outing, or an evening event. Apex delivers a clean, confident presence from day to night.",
     gender: "Primarily Masculine • Unisex Appeal",
     suitableFor: ["Men", "Sports", "Everyday Wear", "Office & Casual", "Day & Evening", "Spring • Summer • Autumn"],
-    image: "/Apex.png",
+    image: "/apex.png",
   },
   {
     id: "m2",
@@ -64,7 +64,7 @@ export const products: Product[] = [
     bestWorn: "Ideal for Spring, Summer, and Autumn, whether you're heading to brunch, a casual outing, a romantic date, or an evening celebration. Crimson Eden leaves behind a vibrant, elegant, and unforgettable signature.",
     gender: "Unisex (Feminine-Leaning)\n\nCrimson Eden is crafted for anyone who loves vibrant fruity-floral fragrances. Its juicy apple, delicate florals, and creamy vanilla create a beautifully balanced scent that can be enjoyed by both men and women while maintaining a slightly feminine character.",
     suitableFor: ["Unisex", "Everyday Wear", "Office & Casual", "Date Nights", "Day & Evening", "Spring • Summer • Autumn"],
-    image: "/Crimson eden.png",
+    image: "/crimson-eden.png",
   },
   {
     id: "m3",
@@ -88,7 +88,7 @@ export const products: Product[] = [
     bestWorn: "Ideal for Spring, Summer, and Autumn, whether you're heading to the office, a weekend getaway, a dinner date, or a night out. Tidal Rush delivers an energetic yet sophisticated presence that transitions effortlessly from day to night.",
     gender: "Masculine-Leaning Unisex\n\nWhile Tidal Rush has a fresh, aquatic character traditionally associated with men's fragrances, its smooth fruity and amber notes make it an excellent choice for anyone who enjoys clean, modern, and long-lasting scents.",
     suitableFor: ["Men", "Unisex", "Everyday Wear", "Office & Casual", "Date Nights", "Day & Evening", "Spring • Summer • Autumn"],
-    image: "/Tidal Rush.png",
+    image: "/tidal-rush.png",
   },
   {
     id: "m4",
@@ -112,7 +112,7 @@ export const products: Product[] = [
     bestWorn: "Ideal for Autumn and Winter, as well as cool evenings throughout the year. Perfect for date nights, formal events, celebrations, and moments when you want to leave a memorable impression.",
     gender: "Unisex\n\nGolden Ember is crafted for anyone who appreciates rich gourmand fragrances. Its warm spices, creamy vanilla, and deep amber create a perfectly balanced scent that feels luxurious on both men and women.",
     suitableFor: ["Unisex", "Evening Wear", "Date Nights", "Parties & Special Occasions", "Autumn & Winter", "Luxury Lovers"],
-    image: "/golden ember.png",
+    image: "/golden-ember.png",
   },
   {
     id: "m5",
@@ -136,6 +136,6 @@ export const products: Product[] = [
     bestWorn: "Ideal for Autumn, Winter, and cool evenings, whether you're heading to a romantic dinner, a celebration, a formal event, or an elegant night out. Veloura Noir leaves behind a refined and unforgettable signature.",
     gender: "Unisex (Feminine-Leaning)\n\nVeloura Noir is designed for anyone who appreciates rich floral-gourmand fragrances. Its creamy vanilla, smooth coffee, and warm woods create a luxurious balance that feels elegant on both men and women, while maintaining a slightly feminine character.",
     suitableFor: ["Unisex", "Evening Wear", "Date Nights", "Parties & Special Occasions", "Autumn & Winter", "Luxury Lovers"],
-    image: "/Veloura Noir.png",
+    image: "/veloura-noir.png",
   }
 ];
