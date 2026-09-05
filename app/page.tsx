@@ -102,7 +102,7 @@ export default function Home() {
                   <div className="flex items-center justify-between w-full mt-auto pt-4 border-t border-white/5">
                     <div className="flex flex-col">
                       <span className="text-brand-gold font-bold text-lg">₹{itemPrice.toLocaleString('en-IN')}</span>
-                      {isFirstOrder && <span className="text-brand-ivory-muted line-through text-xs">₹1,599</span>}
+                      {isFirstOrder && <span className="text-brand-ivory-muted line-through text-xs">₹1,499</span>}
                     </div>
                     <button 
                       onClick={(e) => {

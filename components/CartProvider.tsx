@@ -73,7 +73,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("makulayo_cart");
   };
 
-  const itemPrice = isFirstOrder ? 1199 : 1599;
+  const itemPrice = isFirstOrder ? 1349 : 1499;
   const cartTotal = items.reduce((total, item) => total + (item.quantity * itemPrice), 0);
   const cartCount = items.reduce((count, item) => count + item.quantity, 0);
 

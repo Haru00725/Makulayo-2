@@ -24,7 +24,7 @@ export function Navbar() {
       <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
       <div className="fixed top-0 left-0 w-full bg-brand-gold text-black text-xs md:text-sm font-semibold tracking-widest uppercase py-2 z-50 overflow-hidden">
         <div className="animate-marquee whitespace-nowrap">
-          Get 20% discount on your first order! • Free shipping on orders over ₹1999 • Get 20% discount on your first order! • Free shipping on orders over ₹1999 • Get 20% discount on your first order! • Free shipping on orders over ₹1999 • Get 20% discount on your first order!
+          Get 10% discount on your first order! • Free shipping on orders over ₹1999 • Get 10% discount on your first order! • Free shipping on orders over ₹1999 • Get 10% discount on your first order! • Free shipping on orders over ₹1999 • Get 10% discount on your first order!
         </div>
       </div>
       <motion.nav
@@ -119,7 +119,7 @@ export function Navbar() {
                         <p className="text-sm text-brand-ivory-muted">Qty: {item.quantity}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <p className="text-brand-gold font-medium">₹{(itemPrice * item.quantity).toLocaleString('en-IN')}</p>
-                          {isFirstOrder && <p className="text-brand-ivory-muted line-through text-xs">₹{(1599 * item.quantity).toLocaleString('en-IN')}</p>}
+                          {isFirstOrder && <p className="text-brand-ivory-muted line-through text-xs">₹{(1499 * item.quantity).toLocaleString('en-IN')}</p>}
                         </div>
                       </div>
                       <button 
@@ -141,7 +141,7 @@ export function Navbar() {
                   </div>
                   {isFirstOrder && (
                     <p className="text-brand-gold text-sm font-medium mb-6">
-                      ✨ You'll get a 20% discount on this order!
+                      ✨ You'll get a 10% discount on this order!
                     </p>
                   )}
                   <Link 
