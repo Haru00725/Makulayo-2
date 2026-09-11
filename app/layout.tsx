@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond, Montserrat } from "next/font/google";
+import { Inter, Cormorant_Garamond, Montserrat, Syne } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -22,6 +22,12 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700"],
 });
 
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "MAKULAYO | Eau de Parfum",
   description: "Crafted for those who notice. Exquisite Eau de Parfums. No compromises.",
@@ -37,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable} ${montserrat.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable} ${montserrat.variable} ${syne.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <AuthProvider>
           <CartProvider>

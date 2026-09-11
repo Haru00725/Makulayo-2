@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
-import { ScrollytellingCanvas } from "@/components/ScrollytellingCanvas";
 import { ScrollytellingOverlay } from "@/components/ScrollytellingOverlay";
 import { products } from "@/lib/products";
 import Link from "next/link";
@@ -22,14 +21,12 @@ export default function Home() {
     offset: ["start start", "end end"]
   });
 
-  const [progress, setProgress] = useState(0);
   const { user } = useAuth();
   const { addToCart, isFirstOrder, itemPrice } = useCart();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [hasShownAuth, setHasShownAuth] = useState(false);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setProgress(latest);
     if (latest > 0.99 && !user && !hasShownAuth) {
       setIsAuthModalOpen(true);
       setHasShownAuth(true);
@@ -44,8 +41,7 @@ export default function Home() {
       {/* The Scroll Track - ~220vh gives enough room to scroll through the 3 beats comfortably */}
       <div ref={containerRef} className="relative h-[220vh] w-full">
         {/* Sticky Container */}
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
-          <ScrollytellingCanvas progress={progress} />
+        <div className="sticky top-0 h-screen w-full overflow-hidden bg-golden-live">
           <ScrollytellingOverlay progress={scrollYProgress} featuredProduct={featuredProduct} />
         </div>
       </div>
@@ -53,7 +49,7 @@ export default function Home() {
       {/* Philosophy Section */}
       <section className="bg-brand-void py-32 px-8 relative z-20">
         {/* Fade overlay at the top */}
-        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
+        <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[#140f04] to-transparent pointer-events-none" />
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="text-sm tracking-[0.2em] uppercase text-brand-gold mb-6">Our Philosophy</h2>
@@ -89,6 +85,7 @@ export default function Home() {
                       src={product.image} 
                       alt={product.name} 
                       fill 
+                      sizes="(max-width: 768px) 100vw, 320px"
                       className="object-contain transition-transform duration-700 group-hover:scale-110" 
                     />
                   </div>
@@ -101,8 +98,8 @@ export default function Home() {
                   
                   <div className="flex items-center justify-between w-full mt-auto pt-4 border-t border-white/5">
                     <div className="flex flex-col">
-                      <span className="text-brand-gold font-bold text-lg">₹{itemPrice.toLocaleString('en-IN')}</span>
-                      {isFirstOrder && <span className="text-brand-ivory-muted line-through text-xs">₹1,499</span>}
+                      <span className="text-brand-gold font-sans font-normal text-lg">₹{itemPrice.toLocaleString('en-IN')}</span>
+                      {isFirstOrder && <span className="text-brand-ivory-muted font-sans line-through text-xs">₹1,499</span>}
                     </div>
                     <button 
                       onClick={(e) => {

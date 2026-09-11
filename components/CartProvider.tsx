@@ -19,6 +19,9 @@ type CartContextType = {
   setIsCartOpen: (isOpen: boolean) => void;
   isFirstOrder: boolean;
   itemPrice: number;
+  couponCode: string | null;
+  discountAmount: number;
+  setCoupon: (code: string | null, discount: number) => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -27,6 +30,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFirstOrder, setIsFirstOrder] = useState(true);
+  const [couponCode, setCouponCode] = useState<string | null>(null);
+  const [discountAmount, setDiscountAmount] = useState(0);
 
   useEffect(() => {
     const stored = localStorage.getItem("makulayo_cart");
@@ -70,16 +75,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clearCart = () => {
     setItems([]);
+    setCouponCode(null);
+    setDiscountAmount(0);
     localStorage.removeItem("makulayo_cart");
   };
 
+  const setCoupon = (code: string | null, discount: number) => {
+    setCouponCode(code);
+    setDiscountAmount(discount);
+  };
+
   const itemPrice = isFirstOrder ? 1349 : 1499;
-  const cartTotal = items.reduce((total, item) => total + (item.quantity * itemPrice), 0);
+  const subTotal = items.reduce((total, item) => total + (item.quantity * itemPrice), 0);
+  const cartTotal = Math.max(0, subTotal - discountAmount);
   const cartCount = items.reduce((count, item) => count + item.quantity, 0);
 
   return (
     <CartContext.Provider value={{ 
-      items, addToCart, removeFromCart, clearCart, cartTotal, cartCount, isCartOpen, setIsCartOpen, isFirstOrder, itemPrice 
+      items, addToCart, removeFromCart, clearCart, cartTotal, cartCount, isCartOpen, setIsCartOpen, isFirstOrder, itemPrice, couponCode, discountAmount, setCoupon 
     }}>
       {children}
     </CartContext.Provider>

@@ -8,17 +8,11 @@ export function Footer() {
       
       {/* Trust Badges Banner */}
       <div className="bg-brand-ivory text-black py-8 px-8 relative z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0 md:divide-x md:divide-black/10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-y-0 md:divide-x md:divide-black/10">
           <div className="flex flex-col items-center text-center px-4">
             <Truck className="w-8 h-8 mb-4 stroke-[1.5] text-brand-gold" />
             <h4 className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-1">Free Shipping</h4>
             <p className="text-[10px] sm:text-xs text-black/60">On orders over ₹1999</p>
-          </div>
-
-          <div className="flex flex-col items-center text-center px-4">
-            <Gem className="w-8 h-8 mb-4 stroke-[1.5] text-brand-gold" />
-            <h4 className="text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-1">True Luxury</h4>
-            <p className="text-[10px] sm:text-xs text-black/60">Finest ingredients</p>
           </div>
 
           <div className="flex flex-col items-center text-center px-4">

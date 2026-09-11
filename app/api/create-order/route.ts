@@ -15,12 +15,15 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json();
-  const { items, address } = body;
+  const { items, address, couponCode, discountAmount } = body;
 
-  const totalAmount = items.reduce(
+  const subTotalAmount = items.reduce(
     (sum: number, i: { price: number; quantity: number }) => sum + i.price * i.quantity,
     0
   );
+  
+  const finalDiscount = discountAmount ?? 0;
+  const totalAmount = Math.max(0, subTotalAmount - finalDiscount);
 
   // Use the admin client for writes (bypasses RLS; server verified the user above).
   const admin = createAdminClient();
@@ -31,6 +34,8 @@ export async function POST(req: NextRequest) {
       user_id: user.id,
       status: "pending",
       total_amount: totalAmount,
+      coupon_code: couponCode ?? null,
+      discount_amount: finalDiscount,
     })
     .select()
     .single();
@@ -67,6 +72,14 @@ export async function POST(req: NextRequest) {
     .from("orders")
     .update({ razorpay_order_id: razorpayOrder.id })
     .eq("id", order.id);
+
+  if (couponCode) {
+    // We will just do a direct update since we have the admin client
+    const { data: cData } = await admin.from("coupons").select("current_uses").eq("code", couponCode).single();
+    if (cData) {
+        await admin.from("coupons").update({ current_uses: cData.current_uses + 1 }).eq("code", couponCode);
+    }
+  }
 
   return NextResponse.json({
     orderId: order.id,
