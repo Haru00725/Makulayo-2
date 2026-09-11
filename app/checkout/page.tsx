@@ -87,7 +87,7 @@ export default function CheckoutPage() {
       if (!createOrderRes.ok) throw new Error(order.error || "Failed to create order");
 
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        key: order.keyId || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: order.amount,
         currency: order.currency,
         name: "MAKULAYO",
