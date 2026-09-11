@@ -10,7 +10,7 @@ import Link from "next/link";
 import Script from "next/script";
 
 export default function CheckoutPage() {
-  const { items, cartTotal, clearCart, isFirstOrder, itemPrice, couponCode, discountAmount, setCoupon } = useCart();
+  const { items, cartTotal, clearCart, itemPrice, couponCode, discountAmount, setCoupon } = useCart();
   const { user } = useAuth();
   const router = useRouter();
 

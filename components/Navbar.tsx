@@ -11,7 +11,7 @@ import { AuthModal } from "@/components/AuthModal";
 
 export function Navbar() {
   const { scrollYProgress } = useScroll();
-  const { items, cartCount, cartTotal, isCartOpen, setIsCartOpen, removeFromCart, itemPrice, isFirstOrder } = useCart();
+  const { items, cartCount, cartTotal, isCartOpen, setIsCartOpen, removeFromCart, itemPrice } = useCart();
   const { user } = useAuth();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   
@@ -119,7 +119,6 @@ export function Navbar() {
                         <p className="text-sm text-brand-ivory-muted">Qty: {item.quantity}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <p className="text-brand-gold font-medium">₹{(itemPrice * item.quantity).toLocaleString('en-IN')}</p>
-                          {isFirstOrder && <p className="text-brand-ivory-muted line-through text-xs">₹{(1499 * item.quantity).toLocaleString('en-IN')}</p>}
                         </div>
                       </div>
                       <button 
@@ -139,11 +138,6 @@ export function Navbar() {
                     <span>Subtotal</span>
                     <span>₹{cartTotal.toLocaleString('en-IN')}</span>
                   </div>
-                  {isFirstOrder && (
-                    <p className="text-brand-gold text-sm font-medium mb-6">
-                      ✨ You'll get a 10% discount on this order!
-                    </p>
-                  )}
                   <Link 
                     href="/checkout" 
                     onClick={() => setIsCartOpen(false)}

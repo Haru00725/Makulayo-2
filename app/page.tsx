@@ -22,7 +22,7 @@ export default function Home() {
   });
 
   const { user } = useAuth();
-  const { addToCart, isFirstOrder, itemPrice } = useCart();
+  const { addToCart, itemPrice } = useCart();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [hasShownAuth, setHasShownAuth] = useState(false);
 
@@ -99,7 +99,6 @@ export default function Home() {
                   <div className="flex items-center justify-between w-full mt-auto pt-4 border-t border-white/5">
                     <div className="flex flex-col">
                       <span className="text-brand-gold font-sans font-normal text-lg">₹{itemPrice.toLocaleString('en-IN')}</span>
-                      {isFirstOrder && <span className="text-brand-ivory-muted font-sans line-through text-xs">₹1,499</span>}
                     </div>
                     <button 
                       onClick={(e) => {
