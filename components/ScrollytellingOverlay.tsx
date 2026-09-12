@@ -22,8 +22,10 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
   const sprayOpacity = useTransform(progress, [0, 0.7, 0.75, 0.95, 1], [0, 0, 1, 1, 0]);
   const sprayY = useTransform(progress, [0, 0.7, 0.75, 0.95, 1], [100, 100, 0, 0, -100]);
 
-  // Particles
+  // Particles & Strikes
   const [particles, setParticles] = useState<{id: number, size: number, left: number, top: number, duration: number, delay: number, yMove: number}[]>([]);
+  const [strikes, setStrikes] = useState<{id: number, left: number, height: number, duration: number, delay: number, angle: number}[]>([]);
+
   useEffect(() => {
     setParticles([...Array(30)].map((_, i) => ({
       id: i,
@@ -33,6 +35,15 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
       duration: Math.random() * 6 + 4,
       delay: Math.random() * 5,
       yMove: Math.random() * 150 + 50,
+    })));
+
+    setStrikes([...Array(6)].map((_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      height: Math.random() * 150 + 100,
+      duration: Math.random() * 3 + 2,
+      delay: Math.random() * 8,
+      angle: Math.random() * 30 - 15, // slight random angle between -15 and +15 deg
     })));
   }, []);
 
@@ -73,25 +84,28 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Live Lightning / Golden Strips Effect (using footer texture) */}
-      <motion.div
-        className="fixed inset-0 z-0 pointer-events-none mix-blend-screen"
-        style={{
-          backgroundImage: 'url(/footer_bg.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-        animate={{
-          opacity: [0, 0, 0.7, 0, 0.9, 0, 0],
-          filter: ['brightness(1)', 'brightness(1)', 'brightness(1.5)', 'brightness(1)', 'brightness(2)', 'brightness(1)', 'brightness(1)'],
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          times: [0, 0.90, 0.92, 0.94, 0.96, 0.98, 1], // sudden bright flashes of the texture
-          ease: "linear",
-        }}
-      />
+      {/* Smooth Golden Strikes Background */}
+      {strikes.map((s) => (
+        <motion.div
+          key={`strike-${s.id}`}
+          className="absolute w-[1px] md:w-[2px] bg-gradient-to-b from-transparent via-brand-gold to-transparent mix-blend-screen"
+          style={{
+            left: `${s.left}%`,
+            height: `${s.height}px`,
+            rotate: `${s.angle}deg`,
+          }}
+          animate={{
+            y: ['-100vh', '150vh'],
+            opacity: [0, 0.6, 0],
+          }}
+          transition={{
+            duration: s.duration,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: s.delay,
+          }}
+        />
+      ))}
 
       {/* 1. Hero */}
       <motion.div
