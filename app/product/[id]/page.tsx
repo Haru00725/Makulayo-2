@@ -26,7 +26,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         {/* Product Details Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mb-16 md:mb-24">
           {/* Left: Image */}
-          <div className="relative w-full aspect-square rounded-2xl md:rounded-3xl overflow-hidden crystal-glass p-6 md:p-12 flex items-center justify-center">
+          <div className="relative w-full aspect-[4/5] md:aspect-square rounded-2xl md:rounded-3xl overflow-hidden crystal-glass p-6 md:p-12 flex items-center justify-center">
             <div className="relative w-full h-full">
               <Image 
                 src={product.image} 

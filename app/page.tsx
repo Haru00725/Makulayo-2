@@ -72,15 +72,19 @@ export default function Home() {
             The Exquisite Ones
           </h2>
           
-          <div className="w-full overflow-x-auto md:overflow-hidden relative py-4 md:py-8 -mx-5 md:-mx-8 px-5 md:px-8" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
-            <div className="flex gap-4 md:gap-12 w-max md:animate-marquee pr-4 md:pr-12">
+          <div className="w-full overflow-x-auto relative py-4 md:py-8 -mx-5 md:-mx-8 px-5 md:px-8" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+            <div className="flex gap-4 md:gap-12 w-max pr-4 md:pr-12">
               {[...products, ...products, ...products, ...products].map((product, i) => (
                 <Link 
                   key={`${product.id}-${i}`} 
                   href={`/product/${product.id}`}
-                  className="group flex flex-col items-center p-4 md:p-6 crystal-glass rounded-2xl md:rounded-3xl transition-all hover:bg-white/5 w-[240px] md:w-[320px] shrink-0"
+                  className="group flex flex-col items-center p-4 md:p-6 bg-white/5 backdrop-blur-md border-none rounded-2xl md:rounded-3xl transition-all hover:bg-white/10 w-[220px] md:w-[280px] shrink-0"
                 >
-                  <div className="relative w-full aspect-square mb-4 md:mb-6 overflow-hidden rounded-xl md:rounded-2xl">
+                  <div className="relative w-full aspect-[4/5] mb-4 md:mb-6 overflow-hidden rounded-xl md:rounded-2xl">
+                    <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 z-10 flex items-center gap-1 bg-black/50 backdrop-blur-md px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[10px] md:text-xs font-medium text-brand-ivory">
+                      <span className="text-brand-gold text-[10px] md:text-xs">★</span>
+                      <span>{i % 2 === 0 ? '4.9' : '4.8'}</span>
+                    </div>
                     <Image 
                       src={product.image} 
                       alt={product.name} 
@@ -92,23 +96,23 @@ export default function Home() {
                   <h3 className="text-lg md:text-2xl font-serif font-normal text-brand-ivory mb-1 md:mb-2 group-hover:text-brand-gold transition-colors">
                     {product.name}
                   </h3>
-                  <p className="text-brand-ivory-muted text-center text-[10px] md:text-xs mb-3 md:mb-4 line-clamp-2">
-                    {product.notes.top} • {product.notes.heart} • {product.notes.base}
+                  <p className="text-brand-ivory-muted text-center text-[10px] md:text-xs mb-4 md:mb-6">
+                    {product.notes.top.split(',')[0]} • {product.notes.heart.split(',')[0]} • {product.notes.base.split(',')[0]}
                   </p>
                   
                   <div className="flex items-center justify-between w-full mt-auto pt-3 md:pt-4 border-t border-white/5">
                     <div className="flex flex-col">
-                      <span className="text-brand-gold font-sans font-normal text-base md:text-lg">₹{itemPrice.toLocaleString('en-IN')}</span>
+                      <span className="text-brand-ivory font-sans font-normal text-sm md:text-base">₹{itemPrice.toLocaleString('en-IN')}</span>
                     </div>
                     <button 
                       onClick={(e) => {
                         e.preventDefault();
                         addToCart(product);
                       }}
-                      className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white/5 hover:bg-brand-gold hover:text-black flex items-center justify-center transition-colors border border-white/5 text-lg md:text-xl font-light active:scale-95"
+                      className="text-brand-gold font-bold tracking-widest text-[9px] md:text-xs uppercase hover:text-white transition-colors py-1"
                       aria-label="Add to cart"
                     >
-                      +
+                      ADD TO CART
                     </button>
                   </div>
                 </Link>
