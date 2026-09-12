@@ -85,7 +85,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
           </h1>
         </div>
         <p className="text-2xl md:text-4xl font-okine font-bold text-brand-ivory-muted mb-2 tracking-wide drop-shadow-md">
-          Noticeable.
+          Striking.
         </p>
       </motion.div>
 
@@ -125,7 +125,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
           One spray.
         </h2>
         <p className="text-2xl md:text-4xl text-brand-gold font-okine font-bold max-w-2xl drop-shadow-md">
-          True luxury.
+          True elegance.
         </p>
       </motion.div>
     </div>

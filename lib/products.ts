@@ -93,8 +93,8 @@ export const products: Product[] = [
   {
     id: "m4",
     name: "Golden Ember",
-    tagline: "Where Warmth Becomes Luxury.",
-    description: "Golden Ember is a rich and captivating fragrance that wraps you in an aura of warmth, elegance, and irresistible sweetness. It opens with an inviting blend of aromatic spices and smooth gourmand notes, creating a bold first impression that feels both luxurious and comforting. As the fragrance unfolds, creamy sweetness and refined florals add depth, revealing a sophisticated heart that is both modern and timeless.\n\nThe scent settles into a sensual base of warm amber, precious woods, vanilla, and musk, leaving behind an unforgettable trail that lingers beautifully on the skin.\n\nCrafted for those who appreciate refined luxury, Golden Ember is the perfect expression of confidence, sophistication, and timeless charm.",
+    tagline: "Where Warmth Becomes Elegance.",
+    description: "Golden Ember is a rich and captivating fragrance that wraps you in an aura of warmth, elegance, and irresistible sweetness. It opens with an inviting blend of aromatic spices and smooth gourmand notes, creating a bold first impression that feels both opulent and comforting. As the fragrance unfolds, creamy sweetness and refined florals add depth, revealing a sophisticated heart that is both modern and timeless.\n\nThe scent settles into a sensual base of warm amber, precious woods, vanilla, and musk, leaving behind an unforgettable trail that lingers beautifully on the skin.\n\nCrafted for those who appreciate refined elegance, Golden Ember is the perfect expression of confidence, sophistication, and timeless charm.",
     family: "Amber • Gourmand • Spicy",
     notes: {
       top: "Cinnamon, Nutmeg, Bergamot",
@@ -111,7 +111,7 @@ export const products: Product[] = [
     ],
     bestWorn: "Ideal for Autumn and Winter, as well as cool evenings throughout the year. Perfect for date nights, formal events, celebrations, and moments when you want to leave a memorable impression.",
     gender: "Unisex\n\nGolden Ember is crafted for anyone who appreciates rich gourmand fragrances. Its warm spices, creamy vanilla, and deep amber create a perfectly balanced scent that feels luxurious on both men and women.",
-    suitableFor: ["Unisex", "Evening Wear", "Date Nights", "Parties & Special Occasions", "Autumn & Winter", "Luxury Lovers"],
+    suitableFor: ["Unisex", "Evening Wear", "Date Nights", "Parties & Special Occasions", "Autumn & Winter", "Elegance Seekers"],
     image: "/golden-ember.png",
   },
   {
@@ -135,7 +135,7 @@ export const products: Product[] = [
     ],
     bestWorn: "Ideal for Autumn, Winter, and cool evenings, whether you're heading to a romantic dinner, a celebration, a formal event, or an elegant night out. Veloura Noir leaves behind a refined and unforgettable signature.",
     gender: "Unisex (Feminine-Leaning)\n\nVeloura Noir is designed for anyone who appreciates rich floral-gourmand fragrances. Its creamy vanilla, smooth coffee, and warm woods create a luxurious balance that feels elegant on both men and women, while maintaining a slightly feminine character.",
-    suitableFor: ["Unisex", "Evening Wear", "Date Nights", "Parties & Special Occasions", "Autumn & Winter", "Luxury Lovers"],
+    suitableFor: ["Unisex", "Evening Wear", "Date Nights", "Parties & Special Occasions", "Autumn & Winter", "Elegance Seekers"],
     image: "/veloura-noir.png",
   }
 ];

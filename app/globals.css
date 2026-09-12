@@ -1,3 +1,4 @@
+@import url('https://fonts.cdnfonts.com/css/adamcg-pro');
 @import "tailwindcss";
 
 @theme {
@@ -9,10 +10,10 @@
   --color-brand-champagne: #E8D5B5;
   --color-brand-bronze: #8B6B2E;
   --color-brand-ember: #6E1E22;
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-cormorant);
-  --font-logo: var(--font-montserrat);
-  --font-okine: var(--font-syne);
+  --font-sans: 'ADAM.CG PRO', var(--font-inter);
+  --font-serif: 'ADAM.CG PRO', var(--font-cormorant);
+  --font-logo: 'ADAM.CG PRO', sans-serif;
+  --font-okine: 'ADAM.CG PRO', var(--font-syne);
 }
 
 @keyframes liveGradient {
@@ -47,7 +48,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-syne), sans-serif;
+  font-family: 'ADAM.CG PRO', sans-serif;
   overscroll-behavior-y: none;
 }
 

@@ -22,18 +22,18 @@ export function Navbar() {
   return (
     <>
       <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
-      <div className="fixed top-0 left-0 w-full bg-brand-gold text-black text-xs md:text-sm font-semibold tracking-widest uppercase py-2 z-50 overflow-hidden">
+      <div className="fixed top-0 left-0 w-full bg-brand-gold text-black text-[10px] md:text-sm font-semibold tracking-widest uppercase py-1.5 md:py-2 z-50 overflow-hidden">
         <div className="animate-marquee whitespace-nowrap">
           Get 10% discount on your first order! • Free shipping on orders over ₹1999 • Get 10% discount on your first order! • Free shipping on orders over ₹1999 • Get 10% discount on your first order! • Free shipping on orders over ₹1999 • Get 10% discount on your first order!
         </div>
       </div>
       <motion.nav
         style={{ opacity: navOpacity }}
-        className="fixed top-12 left-1/2 -translate-x-1/2 z-40 flex items-center justify-between px-6 py-3 w-[90%] max-w-5xl rounded-full crystal-glass"
+        className="fixed top-8 md:top-12 left-1/2 -translate-x-1/2 z-40 flex items-center justify-between px-4 md:px-6 py-2.5 md:py-3 w-[94%] md:w-[90%] max-w-5xl rounded-full crystal-glass"
       >
         <div className="flex-1 flex items-center">
           <Link href="/" className="flex items-start">
-            <span className="logo-text text-lg">MAKULAYO</span><span className="text-[10px] text-brand-gold ml-0.5 mt-0.5 font-sans font-medium">™</span>
+            <span className="logo-text text-sm md:text-lg">MAKULAYO</span><span className="text-[8px] md:text-[10px] text-brand-gold ml-0.5 mt-0.5 font-sans font-medium">™</span>
           </Link>
         </div>
 
