@@ -22,14 +22,14 @@ type Order = {
 type FilterTab = "needs-action" | "manual" | "nimbuspost" | "all";
 
 function StatusPill({ order }: { order: Order }) {
-    if (order.fulfillment_method === "manual") {
+    if (order.status === "shipped" && !order.nimbuspost_awb) {
         return (
             <span className="text-[12px] px-2 py-0.5 rounded-[3px] bg-[#EEF2E9] text-[#1E7F4E]">
                 Manual
             </span>
         );
     }
-    if (order.fulfillment_method === "nimbuspost") {
+    if (!!order.nimbuspost_awb) {
         return (
             <span className="text-[12px] px-2 py-0.5 rounded-[3px] bg-[#EAEBF6] text-[#2F3A8F]">
                 NimbusPost
@@ -53,12 +53,20 @@ export function OrdersDashboard({ orders }: { orders: Order[] }) {
         return orders.filter((order) => {
             const address = order.shipping_addresses[0];
 
+            const isNimbuspost = !!order.nimbuspost_awb;
+            const isManual = order.status === "shipped" && !order.nimbuspost_awb;
+            const needsAction = order.status === "paid" && !isNimbuspost && !isManual;
+
             const matchesTab =
                 tab === "all"
                     ? true
                     : tab === "needs-action"
-                        ? order.status === "paid" && !order.fulfillment_method
-                        : order.fulfillment_method === tab;
+                        ? needsAction
+                        : tab === "nimbuspost"
+                            ? isNimbuspost
+                            : tab === "manual"
+                                ? isManual
+                                : false;
 
             if (!matchesTab) return false;
             if (!q) return true;
@@ -120,7 +128,7 @@ export function OrdersDashboard({ orders }: { orders: Order[] }) {
 
             <div className="space-y-3">
                 {filtered.map((order) =>
-                    order.status === "paid" && !order.fulfillment_method ? (
+                    order.status === "paid" && !order.nimbuspost_awb ? (
                         <OrderFulfillmentRow key={order.id} order={order} />
                     ) : (
                         <div
