@@ -73,6 +73,20 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />
 
+      {/* Lightning Flash Effect */}
+      <motion.div
+        className="fixed inset-0 z-0 bg-white pointer-events-none mix-blend-overlay"
+        animate={{
+          opacity: [0, 0, 0.6, 0, 0.8, 0, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          times: [0, 0.92, 0.93, 0.95, 0.96, 0.98, 1], // Double flash at the end of the loop
+          ease: "linear",
+        }}
+      />
+
       {/* 1. Hero */}
       <motion.div
         style={{ opacity: heroOpacity, y: heroY }}
