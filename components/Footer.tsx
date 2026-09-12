@@ -50,7 +50,7 @@ export function Footer() {
                 WebkitTextStroke: '1.5px rgba(212, 175, 55, 0.4)',
               }}
             >
-              BE JUST YOU!
+              CRAFTED FOR YOU!
             </h2>
           </div>
         </div>

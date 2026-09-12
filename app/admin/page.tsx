@@ -11,7 +11,7 @@ export default async function AdminHomePage() {
     const [{ data: orders }, { data: products }] = await Promise.all([
         admin
             .from("orders")
-            .select("id, status, total_amount, fulfillment_method, created_at, shipping_addresses(full_name, city)")
+            .select("id, status, total_amount, nimbuspost_awb, created_at, shipping_addresses(full_name, city)")
             .order("created_at", { ascending: false }),
         admin.from("products").select("id", { count: "exact", head: false }).eq("is_active", true),
     ]);
@@ -20,7 +20,7 @@ export default async function AdminHomePage() {
     const paidOrders = allOrders.filter((o) => o.status === "paid" || o.status === "shipped");
     const revenue = paidOrders.reduce((sum, o) => sum + Number(o.total_amount), 0);
     const needsFulfillment = allOrders.filter(
-        (o) => o.status === "paid" && !o.fulfillment_method
+        (o) => o.status === "paid" && !o.nimbuspost_awb
     ).length;
     const activeProducts = products?.length ?? 0;
 
