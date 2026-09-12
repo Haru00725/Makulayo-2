@@ -73,16 +73,22 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Lightning Flash Effect */}
+      {/* Live Lightning / Golden Strips Effect (using footer texture) */}
       <motion.div
-        className="fixed inset-0 z-0 bg-white pointer-events-none mix-blend-overlay"
+        className="fixed inset-0 z-0 pointer-events-none mix-blend-screen"
+        style={{
+          backgroundImage: 'url(/footer_bg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
         animate={{
-          opacity: [0, 0, 0.6, 0, 0.8, 0, 0],
+          opacity: [0, 0, 0.7, 0, 0.9, 0, 0],
+          filter: ['brightness(1)', 'brightness(1)', 'brightness(1.5)', 'brightness(1)', 'brightness(2)', 'brightness(1)', 'brightness(1)'],
         }}
         transition={{
-          duration: 8,
+          duration: 7,
           repeat: Infinity,
-          times: [0, 0.92, 0.93, 0.95, 0.96, 0.98, 1], // Double flash at the end of the loop
+          times: [0, 0.90, 0.92, 0.94, 0.96, 0.98, 1], // sudden bright flashes of the texture
           ease: "linear",
         }}
       />
