@@ -19,13 +19,13 @@ type Order = {
 
 export function OrderFulfillmentRow({ order }: { order: Order }) {
     const router = useRouter();
-    const [loading, setLoading] = useState<"manual" | "nimbuspost" | null>(null);
+    const [loading, setLoading] = useState<"manual" | "shiprocket" | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     const address = order.shipping_addresses[0];
     const suggestedManual = address ? isLikelyDelhiNCR(address.pincode) : false;
 
-    async function handleFulfill(method: "manual" | "nimbuspost") {
+    async function handleFulfill(method: "manual" | "shiprocket") {
         setLoading(method);
         setError(null);
 
@@ -79,11 +79,11 @@ export function OrderFulfillmentRow({ order }: { order: Order }) {
                     {loading === "manual" ? "Marking as manual…" : "Mark as manual delivery"}
                 </button>
                 <button
-                    onClick={() => handleFulfill("nimbuspost")}
+                    onClick={() => handleFulfill("shiprocket")}
                     disabled={loading !== null}
                     className="text-[13px] px-3 py-1.5 rounded-[4px] bg-[#2F3A8F] text-white hover:bg-[#262F73] disabled:opacity-50 transition-colors"
                 >
-                    {loading === "nimbuspost" ? "Booking shipment…" : "Ship via NimbusPost"}
+                    {loading === "shiprocket" ? "Creating order…" : "Ship via Shiprocket"}
                 </button>
             </div>
         </div>

@@ -119,7 +119,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
           </h1>
         </div>
         <p className="text-2xl md:text-4xl font-okine font-bold text-brand-ivory-muted mb-2 tracking-wide drop-shadow-md">
-          Striking.
+          UNFORGETTABLE.
         </p>
       </motion.div>
 

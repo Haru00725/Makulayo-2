@@ -8,8 +8,10 @@ type Order = {
     status: string;
     total_amount: number;
     created_at: string;
-    fulfillment_method: "manual" | "nimbuspost" | null;
-    nimbuspost_awb: string | null;
+    fulfillment_method: "manual" | "shiprocket" | null;
+    shiprocket_order_id: string | null;
+    shiprocket_awb: string | null;
+    shiprocket_tracking_url: string | null;
     order_items: { product_name: string; quantity: number }[];
     shipping_addresses: {
         full_name: string;
@@ -19,20 +21,20 @@ type Order = {
     }[];
 };
 
-type FilterTab = "needs-action" | "manual" | "nimbuspost" | "all";
+type FilterTab = "needs-action" | "manual" | "shiprocket" | "all";
 
 function StatusPill({ order }: { order: Order }) {
-    if (order.status === "shipped" && !order.nimbuspost_awb) {
+    if (order.status === "yet_to_be_delivered" || (order.status === "shipped" && !order.shiprocket_awb && !order.shiprocket_order_id)) {
         return (
             <span className="text-[12px] px-2 py-0.5 rounded-[3px] bg-[#EEF2E9] text-[#1E7F4E]">
                 Manual
             </span>
         );
     }
-    if (!!order.nimbuspost_awb) {
+    if (order.status === "sent_to_shiprocket" || !!order.shiprocket_order_id || !!order.shiprocket_awb) {
         return (
             <span className="text-[12px] px-2 py-0.5 rounded-[3px] bg-[#EAEBF6] text-[#2F3A8F]">
-                NimbusPost
+                Shiprocket
             </span>
         );
     }
@@ -53,17 +55,17 @@ export function OrdersDashboard({ orders }: { orders: Order[] }) {
         return orders.filter((order) => {
             const address = order.shipping_addresses[0];
 
-            const isNimbuspost = !!order.nimbuspost_awb;
-            const isManual = order.status === "shipped" && !order.nimbuspost_awb;
-            const needsAction = order.status === "paid" && !isNimbuspost && !isManual;
+            const isShiprocket = order.status === "sent_to_shiprocket" || !!order.shiprocket_order_id || !!order.shiprocket_awb;
+            const isManual = order.status === "yet_to_be_delivered" || (order.status === "shipped" && !isShiprocket);
+            const needsAction = order.status === "paid" && !isShiprocket && !isManual;
 
             const matchesTab =
                 tab === "all"
                     ? true
                     : tab === "needs-action"
                         ? needsAction
-                        : tab === "nimbuspost"
-                            ? isNimbuspost
+                        : tab === "shiprocket"
+                            ? isShiprocket
                             : tab === "manual"
                                 ? isManual
                                 : false;
@@ -77,7 +79,8 @@ export function OrdersDashboard({ orders }: { orders: Order[] }) {
                 address?.city,
                 address?.state,
                 address?.pincode,
-                order.nimbuspost_awb,
+                order.shiprocket_awb,
+                order.shiprocket_order_id,
                 ...order.order_items.map((i) => i.product_name),
             ]
                 .filter(Boolean)
@@ -91,7 +94,7 @@ export function OrdersDashboard({ orders }: { orders: Order[] }) {
     const tabs: { key: FilterTab; label: string }[] = [
         { key: "needs-action", label: "Needs fulfillment" },
         { key: "manual", label: "Manual" },
-        { key: "nimbuspost", label: "NimbusPost" },
+        { key: "shiprocket", label: "Shiprocket" },
         { key: "all", label: "All" },
     ];
 
@@ -128,7 +131,7 @@ export function OrdersDashboard({ orders }: { orders: Order[] }) {
 
             <div className="space-y-3">
                 {filtered.map((order) =>
-                    order.status === "paid" && !order.nimbuspost_awb ? (
+                    order.status === "paid" ? (
                         <OrderFulfillmentRow key={order.id} order={order} />
                     ) : (
                         <div
@@ -142,10 +145,15 @@ export function OrdersDashboard({ orders }: { orders: Order[] }) {
                                 <p className="text-[12px] text-[#6E6E68]">#{order.id.slice(0, 8)}</p>
                             </div>
                             <div className="flex items-center gap-3">
-                                {order.nimbuspost_awb && (
+                                {order.shiprocket_awb && (
                                     <span className="text-[12px] text-[#6E6E68]">
-                                        AWB {order.nimbuspost_awb}
+                                        AWB {order.shiprocket_awb}
                                     </span>
+                                )}
+                                {order.shiprocket_tracking_url && (
+                                    <a href={order.shiprocket_tracking_url} target="_blank" rel="noreferrer" className="text-[12px] text-brand-gold underline hover:no-underline">
+                                        Track
+                                    </a>
                                 )}
                                 <StatusPill order={order} />
                             </div>
