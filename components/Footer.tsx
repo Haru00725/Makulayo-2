@@ -18,7 +18,7 @@ export function Footer() {
           <div className="flex flex-col items-center text-center px-1 md:px-4">
             <RefreshCcw className="w-6 h-6 md:w-8 md:h-8 mb-2 md:mb-4 stroke-[1.5] text-brand-gold" />
             <h4 className="text-[9px] md:text-xs font-bold tracking-widest uppercase mb-0.5 md:mb-1">Easy Returns</h4>
-            <p className="text-[8px] md:text-xs text-black/60">5-day policy</p>
+            <p className="text-[8px] md:text-xs text-black/60">2-day policy</p>
           </div>
           <div className="flex flex-col items-center text-center px-1 md:px-4">
             <Lock className="w-6 h-6 md:w-8 md:h-8 mb-2 md:mb-4 stroke-[1.5] text-brand-gold" />
