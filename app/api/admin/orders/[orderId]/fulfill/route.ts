@@ -9,10 +9,10 @@ const supabase = createClient(
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { orderId: string } }
+  { params }: { params: Promise<{ orderId: string }> }
 ) {
   try {
-    const { orderId } = params;
+    const { orderId } = await params;
     const { method } = await req.json();
 
     if (method === "manual") {
