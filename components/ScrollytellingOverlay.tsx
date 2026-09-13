@@ -115,7 +115,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
         <div className="relative inline-block mb-4">
           <h1 className="flex items-start text-4xl sm:text-5xl md:text-7xl lg:text-8xl relative overflow-visible pb-2 z-10">
             <span className="logo-text z-10 relative drop-shadow-lg">MAKULAYO</span>
-            <span className="text-sm sm:text-base md:text-2xl lg:text-3xl text-brand-gold ml-1 sm:ml-2 mt-1 sm:mt-2 font-okine font-bold z-10 relative">™</span>
+            <sup className="text-sm sm:text-base md:text-2xl lg:text-3xl text-brand-gold ml-[2px] sm:ml-[4px] font-sans font-medium z-10 relative -top-[0.2em]">™</sup>
           </h1>
         </div>
         <p className="text-2xl md:text-4xl font-okine font-bold text-brand-ivory-muted mb-2 tracking-wide drop-shadow-md">

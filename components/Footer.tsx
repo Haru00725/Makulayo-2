@@ -45,10 +45,8 @@ export function Footer() {
         <div className="relative z-10 py-12 md:py-20 px-6 md:px-8 overflow-hidden border-b border-white/5">
           <div className="max-w-7xl mx-auto">
             <h2
-              className="text-[clamp(2.5rem,14vw,10rem)] font-bold leading-[0.9] tracking-tight text-transparent uppercase select-none"
-              style={{
-                WebkitTextStroke: '1.5px rgba(212, 175, 55, 0.4)',
-              }}
+              className="text-[clamp(2.5rem,14vw,10rem)] font-bold leading-[0.9] tracking-tight text-white uppercase select-none"
+              style={{ fontFamily: 'ADAM.CG PRO, sans-serif' }}
             >
               CRAFTED FOR YOU!
             </h2>
@@ -62,7 +60,7 @@ export function Footer() {
             {/* Brand & Newsletter */}
             <div className="col-span-2 space-y-6 md:space-y-8">
               <h2 className="flex items-start text-3xl md:text-5xl">
-                <span className="logo-text">MAKULAYO</span><span className="text-sm text-brand-gold ml-1 mt-1 font-sans font-medium">™</span>
+                <span className="logo-text">MAKULAYO</span><sup className="text-sm text-brand-gold ml-[2px] font-sans font-medium relative -top-[0.2em]">™</sup>
               </h2>
               <p className="text-sm md:text-lg max-w-sm leading-relaxed">
                 Exquisite Eau de Parfums. Crafted without compromise for those who notice the details.

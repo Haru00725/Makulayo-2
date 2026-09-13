@@ -10,7 +10,7 @@ export default function FAQPage() {
         <div className="space-y-8 text-lg leading-relaxed">
           <section>
             <h2 className="text-xl text-brand-ivory font-semibold mb-2">How long do Makulayo fragrances last?</h2>
-            <p>Our Eau de Parfums are formulated with a high concentration of premium oils. You can expect the scent to linger beautifully on the skin for 8 to 12 hours, and even longer on clothing.</p>
+            <p>Our Eau de Parfums are formulated with a high concentration of premium oils. You can expect the scent to linger beautifully on the skin for more than 8 hours, and even longer on clothing.</p>
           </section>
 
           <section>
@@ -23,10 +23,6 @@ export default function FAQPage() {
             <p>We currently ship across India with free standard delivery on orders over ₹1999. We are actively working on expanding our international shipping capabilities to bring Makulayo to more fragrance enthusiasts worldwide.</p>
           </section>
 
-          <section>
-            <h2 className="text-xl text-brand-ivory font-semibold mb-2">Can I purchase a sample before committing to a full bottle?</h2>
-            <p>Absolutely. We offer a Discovery Set that includes all of our signature scents, allowing you to experience the full Makulayo collection on your skin before making a choice.</p>
-          </section>
         </div>
       </div>
     </main>

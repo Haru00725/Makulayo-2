@@ -19,9 +19,9 @@ export default function ShippingReturnsPage() {
           </section>
 
           <section>
-            <h2 className="text-lg tracking-[0.15em] uppercase text-brand-ivory font-semibold mb-4">5-Day Return Policy</h2>
-            <p className="mb-4">Because fragrances are a highly personal and intimate product, we maintain a strict <span className="text-brand-gold font-semibold">5-day return policy</span> to ensure the integrity of our inventory.</p>
-            <p className="mb-4">If you are unsatisfied with your purchase, you must initiate a return within 5 days of the delivery date. To be eligible for a return, the item must be unused, in the same condition that you received it, and in its original packaging with the cellophane seal intact.</p>
+            <h2 className="text-lg tracking-[0.15em] uppercase text-brand-ivory font-semibold mb-4">2-Day Return Policy</h2>
+            <p className="mb-4">Because fragrances are a highly personal and intimate product, we maintain a strict <span className="text-brand-gold font-semibold">2-day return policy</span> to ensure the integrity of our inventory.</p>
+            <p className="mb-4">If you are unsatisfied with your purchase, you must initiate a return within 2 days of the delivery date. To be eligible for a return, the item must be unused, in the same condition that you received it, and in its original packaging with the cellophane seal intact.</p>
             <p>If you have opened the fragrance, we unfortunately cannot accept a return due to hygiene and quality control standards. We highly recommend purchasing our Discovery Set if you are unsure which Makulayo scent is right for you.</p>
           </section>
 

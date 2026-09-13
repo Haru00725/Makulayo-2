@@ -33,7 +33,7 @@ export function Navbar() {
       >
         <div className="flex-1 flex items-center">
           <Link href="/" className="flex items-start">
-            <span className="logo-text text-sm md:text-lg">MAKULAYO</span><span className="text-[8px] md:text-[10px] text-brand-gold ml-0.5 mt-0.5 font-sans font-medium">™</span>
+            <span className="logo-text text-sm md:text-lg">MAKULAYO</span><sup className="text-[8px] md:text-[10px] text-brand-gold ml-[1px] font-sans font-medium relative -top-[0.2em]">™</sup>
           </Link>
         </div>
 
