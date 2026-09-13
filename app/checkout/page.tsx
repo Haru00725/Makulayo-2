@@ -86,6 +86,26 @@ export default function CheckoutPage() {
 
       if (!createOrderRes.ok) throw new Error(order.error || "Failed to create order");
 
+      if (order.bypassed) {
+        // Success - Mock DB update for local usage if needed
+        const newOrder = {
+          id: order.orderId,
+          date: new Date().toISOString(),
+          items: [...items],
+          total: cartTotal,
+          status: "Processing",
+          shippingDetails: form,
+        };
+
+        const existingOrders = JSON.parse(localStorage.getItem("makulayo_orders") || "[]");
+        localStorage.setItem("makulayo_orders", JSON.stringify([newOrder, ...existingOrders]));
+
+        clearCart();
+        setSuccess(true);
+        setIsProcessing(false);
+        return;
+      }
+
       const options = {
         key: order.keyId || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: order.amount,

@@ -66,6 +66,23 @@ export async function POST(req: NextRequest) {
     pincode: address.pincode,
   });
 
+  // If the total is 0 (e.g., 100% discount), bypass Razorpay completely
+  if (totalAmount === 0) {
+    await admin.from("orders").update({ status: "paid" }).eq("id", order.id);
+
+    if (couponCode) {
+      const { data: cData } = await admin.from("coupons").select("current_uses").eq("code", couponCode).single();
+      if (cData) {
+          await admin.from("coupons").update({ current_uses: cData.current_uses + 1 }).eq("code", couponCode);
+      }
+    }
+    
+    return NextResponse.json({
+      orderId: order.id,
+      bypassed: true,
+    });
+  }
+
   const razorpayOrder = await createRazorpayOrder(totalAmount, order.id);
 
   await admin
