@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { ScrollytellingOverlay } from "@/components/ScrollytellingOverlay";
@@ -13,7 +13,43 @@ import { useCart } from "@/components/CartProvider";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const featuredProduct = products[0]; // MAKULAYO No. 1
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Ordered: Golden Ember (m4), Veloura Noir (m5), Apex (m1), Crimson Eden (m2), Tidal Rush (m3)
+  const orderedProducts = [
+    products.find(p => p.id === 'm4'),
+    products.find(p => p.id === 'm5'),
+    products.find(p => p.id === 'm1'),
+    products.find(p => p.id === 'm2'),
+    products.find(p => p.id === 'm3')
+  ].filter(Boolean) as typeof products;
+
+  const displayProducts = [...orderedProducts, ...orderedProducts, ...orderedProducts];
+
+  useEffect(() => {
+    let animationFrameId: number;
+    let direction = 1;
+    
+    const loop = () => {
+      const container = scrollContainerRef.current;
+      if (container && !isHovered) {
+        container.scrollLeft += direction * 1;
+        
+        // Bounce back if we hit either end
+        if (container.scrollLeft >= container.scrollWidth - container.clientWidth - 1) {
+          direction = -1; // scroll left
+        } else if (container.scrollLeft <= 0) {
+          direction = 1; // scroll right
+        }
+      }
+      animationFrameId = requestAnimationFrame(loop);
+    };
+    
+    animationFrameId = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovered]);
 
   // Track the scroll progress of the main container
   const { scrollYProgress } = useScroll({
@@ -38,8 +74,8 @@ export default function Home() {
       <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
       <Navbar />
       
-      {/* The Scroll Track - ~220vh gives enough room to scroll through the 3 beats comfortably */}
-      <div ref={containerRef} className="relative h-[220vh] w-full">
+      {/* The Scroll Track */}
+      <div ref={containerRef} className="relative h-[350vh] md:h-[300vh] w-full">
         {/* Sticky Container */}
         <div className="sticky top-0 h-screen w-full overflow-hidden bg-golden-live">
           <ScrollytellingOverlay progress={scrollYProgress} featuredProduct={featuredProduct} />
@@ -72,9 +108,17 @@ export default function Home() {
             The Exquisite Ones
           </h2>
           
-          <div className="w-full overflow-x-auto relative py-4 md:py-8 -mx-5 md:-mx-8 px-5 md:px-8" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+          <div 
+            ref={scrollContainerRef}
+            className="w-full overflow-x-auto relative py-4 md:py-8 -mx-5 md:-mx-8 px-5 md:px-8 touch-pan-x" 
+            style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={() => setIsHovered(true)}
+            onTouchEnd={() => setIsHovered(false)}
+          >
             <div className="flex gap-4 md:gap-12 w-max pr-4 md:pr-12">
-              {[...products, ...products, ...products, ...products].map((product, i) => (
+              {displayProducts.map((product, i) => (
                 <Link 
                   key={`${product.id}-${i}`} 
                   href={`/product/${product.id}`}
@@ -124,7 +168,7 @@ export default function Home() {
 
       {/* Signed In CTA Section */}
       {!user && (
-        <section className="relative z-20 bg-brand-gold py-10 md:py-16 px-5 md:px-8 text-center">
+        <section className="relative z-20 bg-brand-gold pt-10 pb-20 md:pt-16 md:pb-32 px-5 md:px-8 text-center">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-2xl md:text-5xl font-bold text-black tracking-wide mb-3 md:mb-4">
               SIGNED IN YET?

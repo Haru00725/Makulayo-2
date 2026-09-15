@@ -3,6 +3,7 @@
 import { motion, useTransform, MotionValue } from "framer-motion";
 import { Product } from "@/lib/products";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface ScrollytellingOverlayProps {
   progress: MotionValue<number>;
@@ -119,7 +120,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
           </h1>
         </div>
         <p className="text-2xl md:text-4xl font-okine font-bold text-brand-ivory-muted mb-2 tracking-wide drop-shadow-md">
-          UNFORGETTABLE.
+          UNSTOPABLE & UNSKIPABLE.
         </p>
       </motion.div>
 

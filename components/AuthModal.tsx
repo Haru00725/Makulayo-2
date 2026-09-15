@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/components/AuthProvider";
 import { X, Eye, EyeOff, Mail, Lock, User, ArrowLeft, Check, AlertCircle } from "lucide-react";
+import Image from "next/image";
 
 type AuthView = "sign-in" | "sign-up" | "forgot-password" | "check-email" | "confirmation-sent";
 
