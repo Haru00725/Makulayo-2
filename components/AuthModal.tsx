@@ -413,7 +413,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 alt="MAKULAYO™"
                                 width={120}
                                 height={24}
-                                className="w-24 md:w-32 h-auto object-contain mx-auto"
+                                className="w-32 md:w-48 h-auto object-contain mx-auto"
                             />
                         </div>
 

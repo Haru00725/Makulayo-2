@@ -86,7 +86,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
             alt="MAKULAYO™"
             width={600}
             height={120}
-            className="w-[280px] md:w-[480px] lg:w-[600px] h-auto object-contain mx-auto"
+            className="w-[320px] md:w-[560px] lg:w-[720px] h-auto object-contain mx-auto"
             priority
           />
         </h1>
