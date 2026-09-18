@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, CSSProperties } from "react";
 
 // Fade + 12px rise, 400ms duration
 export const revealVariant = {
@@ -11,7 +11,7 @@ export const revealVariant = {
     y: 0, 
     transition: { 
       duration: 0.4, 
-      ease: [0.22, 1, 0.36, 1] 
+      ease: [0.22, 1, 0.36, 1] as const
     } 
   },
 };
@@ -32,9 +32,10 @@ interface RevealProps {
   width?: "fit-content" | "100%";
   className?: string;
   delay?: number;
+  style?: CSSProperties;
 }
 
-export function Reveal({ children, width = "100%", className = "", delay = 0 }: RevealProps) {
+export function Reveal({ children, width = "100%", className = "", delay = 0, style }: RevealProps) {
   return (
     <motion.div
       variants={{
@@ -44,7 +45,7 @@ export function Reveal({ children, width = "100%", className = "", delay = 0 }: 
           y: 0, 
           transition: { 
             duration: 0.4, 
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.22, 1, 0.36, 1] as const,
             delay
           } 
         },
@@ -52,7 +53,7 @@ export function Reveal({ children, width = "100%", className = "", delay = 0 }: 
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      style={{ width }}
+      style={{ width, ...style }}
       className={className}
     >
       {children}
@@ -63,9 +64,10 @@ export function Reveal({ children, width = "100%", className = "", delay = 0 }: 
 interface RevealGroupProps {
   children: ReactNode;
   className?: string;
+  style?: CSSProperties;
 }
 
-export function RevealGroup({ children, className = "" }: RevealGroupProps) {
+export function RevealGroup({ children, className = "", style }: RevealGroupProps) {
   return (
     <motion.div
       variants={staggerContainer}
@@ -73,15 +75,22 @@ export function RevealGroup({ children, className = "" }: RevealGroupProps) {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       className={className}
+      style={style}
     >
       {children}
     </motion.div>
   );
 }
 
-export function RevealItem({ children, className = "" }: { children: ReactNode; className?: string }) {
+interface RevealItemProps {
+  children: ReactNode;
+  className?: string;
+  style?: CSSProperties;
+}
+
+export function RevealItem({ children, className = "", style }: RevealItemProps) {
   return (
-    <motion.div variants={revealVariant} className={className}>
+    <motion.div variants={revealVariant} className={className} style={style}>
       {children}
     </motion.div>
   );
