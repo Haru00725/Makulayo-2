@@ -1,31 +1,96 @@
 import { Navbar } from "@/components/Navbar";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Our Philosophy | MAKULAYO®",
+  description: "Blended in India. IFRA-compliant Eau de Parfum crafted for those who notice.",
+};
 
 export default function AboutPage() {
   return (
-    <main className="bg-brand-void min-h-screen text-brand-ivory-muted pt-32 pb-24 px-8">
+    <main style={{ background: "var(--bg)", minHeight: "100vh", color: "var(--text)" }}>
       <Navbar />
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-serif font-light tracking-tight text-brand-gold mb-12 text-center">Our Philosophy</h1>
-        
-        <div className="space-y-12 text-lg leading-relaxed max-w-3xl mx-auto">
-          <section className="text-center">
-            <h2 className="text-3xl font-serif font-light text-brand-ivory mb-6">Crafted for those who notice.</h2>
-            <p className="text-xl">In a world obsessed with mass production, Makulayo stands apart. We believe that true excellence lies in the details—the subtle shift of a heart note, the lingering memory of a base, the flawless geometry of a glass bottle.</p>
+      <div
+        className="max-w-3xl mx-auto px-5 md:px-8"
+        style={{ paddingTop: "160px", paddingBottom: "var(--section-pad)" }}
+      >
+        <p
+          className="text-center mb-6"
+          style={{
+            fontSize: "var(--eyebrow)",
+            letterSpacing: "var(--tracking-eyebrow)",
+            color: "var(--gold)",
+          }}
+        >
+          OUR PHILOSOPHY
+        </p>
+        <h1
+          className="text-center mb-16"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "var(--display-lg)",
+            letterSpacing: "var(--tracking-display-lg)",
+          }}
+        >
+          CRAFTED FOR THOSE WHO NOTICE
+        </h1>
+
+        <div className="space-y-12" style={{ maxWidth: "62ch", margin: "0 auto" }}>
+          <section>
+            <p style={{ fontSize: "var(--body-lg)", lineHeight: 1.7, color: "var(--text-muted)" }}>
+              In a world of mass production, Makulayo stands apart. We believe true excellence lies in the details — the subtle shift of a heart note, the lingering memory of a base, the way a fragrance evolves on your skin over eight to twelve hours.
+            </p>
           </section>
 
           <section>
-            <h2 className="text-lg tracking-[0.15em] uppercase text-brand-gold font-semibold mb-4 border-b border-white/5 pb-2">True Sophistication</h2>
-            <p>We craft fragrances of unparalleled quality and refinement. Each Makulayo scent is an extraordinary journey of the senses, blending the world's most exquisite ingredients to deliver a truly opulent experience that lingers long after you leave.</p>
+            <h2
+              className="mb-4 pb-3"
+              style={{
+                fontSize: "var(--eyebrow)",
+                letterSpacing: "var(--tracking-eyebrow)",
+                color: "var(--gold)",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              THE FORMULATION
+            </h2>
+            <p style={{ fontSize: "var(--body-lg)", lineHeight: 1.7, color: "var(--text-muted)" }}>
+              Eau de Parfum concentration — the highest we offer — for longevity that lasts from morning to midnight. Every formulation is IFRA-compliant, phthalate-free, and cruelty-free. We source raw materials for their quality, not their cost. No shortcuts, no synthetics-for-the-sake-of-synthetics.
+            </p>
           </section>
 
           <section>
-            <h2 className="text-lg tracking-[0.15em] uppercase text-brand-gold font-semibold mb-4 border-b border-white/5 pb-2">Uncompromising Ingredients</h2>
-            <p>Our raw materials are sourced from the finest origins globally. From the rarest ouds to the most delicate floral absolutes, we spare no expense. We don't build perfumes to a budget; we build them to an emotion.</p>
+            <h2
+              className="mb-4 pb-3"
+              style={{
+                fontSize: "var(--eyebrow)",
+                letterSpacing: "var(--tracking-eyebrow)",
+                color: "var(--gold)",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              BLENDED IN INDIA
+            </h2>
+            <p style={{ fontSize: "var(--body-lg)", lineHeight: 1.7, color: "var(--text-muted)" }}>
+              Every Makulayo fragrance is formulated and bottled in India. We work directly with our blending house to maintain complete control over quality, from raw material to finished bottle.
+            </p>
           </section>
 
           <section>
-            <h2 className="text-lg tracking-[0.15em] uppercase text-brand-gold font-semibold mb-4 border-b border-white/5 pb-2">The Experience</h2>
-            <p>Wearing Makulayo is an intimate experience that projects outward. It is a quiet confidence. One spray, and the whole room notices. Welcome to the few.</p>
+            <h2
+              className="mb-4 pb-3"
+              style={{
+                fontSize: "var(--eyebrow)",
+                letterSpacing: "var(--tracking-eyebrow)",
+                color: "var(--gold)",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              THE EXPERIENCE
+            </h2>
+            <p style={{ fontSize: "var(--body-lg)", lineHeight: 1.7, color: "var(--text-muted)" }}>
+              Wearing Makulayo is an intimate experience that projects outward. A quiet confidence. One spray, and the room notices. Welcome to the few.
+            </p>
           </section>
         </div>
       </div>

@@ -1,118 +1,278 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Truck, RefreshCcw, Lock, Gem } from "lucide-react";
+import { Truck, RefreshCcw, Lock } from "lucide-react";
+
+function InstagramIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
 
 export function Footer() {
   return (
-    <footer className="relative z-20 rounded-t-[2rem] md:rounded-t-[4rem] overflow-hidden -mt-12 shadow-[0_-20px_50px_rgba(0,0,0,0.8)] flex flex-col">
-      
-      {/* Trust Badges Banner */}
-      <div className="bg-brand-ivory text-black py-5 md:py-8 px-4 md:px-8 relative z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-3 gap-x-2 md:divide-x md:divide-black/10">
-          <div className="flex flex-col items-center text-center px-1 md:px-4">
-            <Truck className="w-6 h-6 md:w-8 md:h-8 mb-2 md:mb-4 stroke-[1.5] text-brand-gold" />
-            <h4 className="text-[9px] md:text-xs font-bold tracking-widest uppercase mb-0.5 md:mb-1">Free Shipping</h4>
-            <p className="text-[8px] md:text-xs text-black/60">Over ₹1999</p>
-          </div>
-
-          <div className="flex flex-col items-center text-center px-1 md:px-4">
-            <RefreshCcw className="w-6 h-6 md:w-8 md:h-8 mb-2 md:mb-4 stroke-[1.5] text-brand-gold" />
-            <h4 className="text-[9px] md:text-xs font-bold tracking-widest uppercase mb-0.5 md:mb-1">Easy Returns</h4>
-            <p className="text-[8px] md:text-xs text-black/60">2-day policy</p>
-          </div>
-          <div className="flex flex-col items-center text-center px-1 md:px-4">
-            <Lock className="w-6 h-6 md:w-8 md:h-8 mb-2 md:mb-4 stroke-[1.5] text-brand-gold" />
-            <h4 className="text-[9px] md:text-xs font-bold tracking-widest uppercase mb-0.5 md:mb-1">Secure Pay</h4>
-            <p className="text-[8px] md:text-xs text-black/60">Safe & encrypted</p>
+    <footer className="relative z-[2]" style={{ background: "var(--bg)" }}>
+      {/* Compact shipping/returns/secure strip */}
+      <div
+        style={{
+          borderTop: "1px solid var(--border)",
+          borderBottom: "1px solid var(--border)",
+          padding: "var(--space-6) 0",
+        }}
+      >
+        <div className="max-w-5xl mx-auto px-5 md:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12">
+            {[
+              { icon: Truck, label: "Free shipping over ₹1,999" },
+              { icon: RefreshCcw, label: "2-day returns" },
+              { icon: Lock, label: "Secure payments" },
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="flex items-center gap-2">
+                <Icon size={16} strokeWidth={1.25} style={{ color: "var(--text-faint)" }} />
+                <span style={{ fontSize: "var(--caption)", color: "var(--text-faint)" }}>
+                  {label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      <div className="relative bg-black text-brand-ivory-muted flex flex-col justify-between">
-        
-        {/* Background Image */}
+      {/* Footer content with marble texture */}
+      <div className="relative" style={{ background: "var(--bg)" }}>
+        {/* Background marble at low opacity */}
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="/footer_bg.png" 
-            alt="Dark elegant texture" 
-            fill 
-            className="object-cover opacity-50"
+          <Image
+            src="/footer_bg.png"
+            alt=""
+            fill
+            className="object-cover"
+            style={{ opacity: 0.15 }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
+          <div className="absolute inset-0" style={{ background: "var(--bg)", opacity: 0.6 }} />
         </div>
 
-        {/* Brand Tagline - same bg as footer */}
-        <div className="relative z-10 py-12 md:py-20 px-6 md:px-8 overflow-hidden border-b border-white/5">
-          <div className="max-w-7xl mx-auto">
-            <h2
-              className="text-[clamp(2.5rem,14vw,10rem)] font-bold leading-[0.9] tracking-tight text-white uppercase select-none"
-              style={{ fontFamily: 'ADAM.CG PRO, sans-serif' }}
-            >
-              CRAFTED FOR YOU!
-            </h2>
-          </div>
+        {/* Wordmark */}
+        <div
+          className="relative z-10 text-center"
+          style={{
+            paddingTop: "var(--section-pad)",
+            paddingBottom: "var(--space-16)",
+          }}
+        >
+          <Image
+            src="/logo-makulayo.png"
+            alt="MAKULAYO™"
+            width={480}
+            height={96}
+            className="w-64 md:w-80 lg:w-96 h-auto object-contain mx-auto"
+          />
         </div>
 
-        {/* Footer Content */}
-        <div className="relative z-10 py-12 md:py-24 px-6 md:px-8">
-          <div className="max-w-7xl mx-auto w-full grid grid-cols-2 md:grid-cols-4 gap-8">
-          
-            {/* Brand & Newsletter */}
-            <div className="col-span-2 space-y-6 md:space-y-8">
-              <h2 className="flex items-start text-3xl md:text-5xl">
-                <span className="logo-text">MAKULAYO</span><sup className="text-sm text-brand-gold ml-[2px] font-sans font-medium relative -top-[0.2em]">™</sup>
-              </h2>
-              <p className="text-sm md:text-lg max-w-sm leading-relaxed">
-                Exquisite Eau de Parfums. Crafted without compromise for those who notice the details.
+        {/* Columns */}
+        <div className="relative z-10 px-5 md:px-8 pb-16">
+          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            {/* Brand blurb */}
+            <div className="col-span-2 md:col-span-1 space-y-6">
+              <p style={{ fontSize: "var(--body)", color: "var(--text-muted)", lineHeight: 1.7 }}>
+                Eau de Parfum crafted for those who notice. Blended in India with IFRA-compliant formulations.
               </p>
-              <div className="pt-2 md:pt-4">
-                <h4 className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-brand-ivory mb-3 md:mb-4">Join The Few</h4>
-                <div className="flex items-center border-b border-white/20 pb-2 max-w-md focus-within:border-brand-gold transition-colors">
-                  <input 
-                    type="email" 
-                    placeholder="Email Address" 
-                    className="bg-transparent border-none outline-none w-full text-brand-ivory placeholder:text-white/30 text-sm md:text-base"
-                  />
-                  <button className="text-brand-gold hover:text-brand-ivory transition-colors p-2">
-                    <ArrowRight size={18} />
-                  </button>
+              <a
+                href="https://www.instagram.com/makulayo.parfum_official"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-colors"
+                style={{ color: "var(--text-muted)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
+                aria-label="Follow MAKULAYO on Instagram"
+              >
+                <InstagramIcon size={18} />
+                <span style={{ fontSize: "var(--caption)" }}>@makulayo.parfum_official</span>
+              </a>
+            </div>
+
+            {/* Explore */}
+            <div>
+              <h4
+                className="mb-6"
+                style={{
+                  fontSize: "var(--eyebrow)",
+                  letterSpacing: "var(--tracking-eyebrow)",
+                  color: "var(--text)",
+                }}
+              >
+                EXPLORE
+              </h4>
+              <ul className="space-y-3">
+                {[
+                  { href: "/#collection", label: "The Collection" },
+                  { href: "/about", label: "Our Philosophy" },
+                  { href: "/account", label: "Account" },
+                ].map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="transition-colors"
+                      style={{ fontSize: "var(--body)", color: "var(--text-muted)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Client Care */}
+            <div>
+              <h4
+                className="mb-6"
+                style={{
+                  fontSize: "var(--eyebrow)",
+                  letterSpacing: "var(--tracking-eyebrow)",
+                  color: "var(--text)",
+                }}
+              >
+                CLIENT CARE
+              </h4>
+              <ul className="space-y-3">
+                {[
+                  { href: "/shipping", label: "Shipping & Returns" },
+                  { href: "/faq", label: "FAQ" },
+                  { href: "mailto:makulayo@gmail.com", label: "Contact Us" },
+                ].map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="transition-colors"
+                      style={{ fontSize: "var(--body)", color: "var(--text-muted)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Legal & Contact */}
+            <div>
+              <h4
+                className="mb-6"
+                style={{
+                  fontSize: "var(--eyebrow)",
+                  letterSpacing: "var(--tracking-eyebrow)",
+                  color: "var(--text)",
+                }}
+              >
+                LEGAL
+              </h4>
+              <ul className="space-y-3 mb-6">
+                {[
+                  { href: "/terms", label: "Terms of Service" },
+                  { href: "/privacy", label: "Privacy Policy" },
+                ].map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="transition-colors"
+                      style={{ fontSize: "var(--body)", color: "var(--text-muted)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Grievance & Contact Block */}
+          <div
+            className="max-w-7xl mx-auto mt-12 pt-8"
+            style={{ borderTop: "1px solid var(--border)" }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4
+                  className="mb-3"
+                  style={{
+                    fontSize: "var(--eyebrow)",
+                    letterSpacing: "var(--tracking-eyebrow)",
+                    color: "var(--text-muted)",
+                  }}
+                >
+                  REGISTERED BUSINESS
+                </h4>
+                <div style={{ fontSize: "var(--caption)", color: "var(--text-faint)", lineHeight: 1.8 }}>
+                  <p>MAKULAYO</p>
+                  <p>Third Floor, E-147, Block-E</p>
+                  <p>Gali No. 3, West Vinod Nagar</p>
+                  <p>Near Silver Line Hospital</p>
+                  <p>Vinod Nagar West, New Delhi</p>
+                  <p>East Delhi, Delhi — 110092</p>
+                </div>
+              </div>
+              <div>
+                <h4
+                  className="mb-3"
+                  style={{
+                    fontSize: "var(--eyebrow)",
+                    letterSpacing: "var(--tracking-eyebrow)",
+                    color: "var(--text-muted)",
+                  }}
+                >
+                  CONTACT & GRIEVANCE
+                </h4>
+                <div style={{ fontSize: "var(--caption)", color: "var(--text-faint)", lineHeight: 1.8 }}>
+                  <p>
+                    Email:{" "}
+                    <a
+                      href="mailto:makulayo@gmail.com"
+                      className="transition-colors"
+                      style={{ color: "var(--text-muted)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
+                    >
+                      makulayo@gmail.com
+                    </a>
+                  </p>
+                  <p>
+                    Phone:{" "}
+                    <a
+                      href="tel:+919953142247"
+                      className="transition-colors"
+                      style={{ color: "var(--text-muted)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
+                    >
+                      +91 99531 42247
+                    </a>
+                  </p>
+                  <p>Grievance Officer: To be announced</p>
+                  <p>Response timeline: 48 hours</p>
                 </div>
               </div>
             </div>
-
-            {/* Links */}
-            <div className="space-y-3 md:space-y-4">
-              <h4 className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-brand-ivory mb-4 md:mb-6">Explore</h4>
-              <ul className="space-y-3 md:space-y-4 text-sm">
-                <li><Link href="/#collection" className="hover:text-brand-gold transition-colors">The Collection</Link></li>
-                <li><Link href="/about" className="hover:text-brand-gold transition-colors">Our Philosophy</Link></li>
-                <li><Link href="/account" className="hover:text-brand-gold transition-colors">Account</Link></li>
-                <li><Link href="/shipping-returns" className="hover:text-brand-gold transition-colors">Shipping & Returns</Link></li>
-              </ul>
-            </div>
-
-            {/* Support */}
-            <div className="space-y-3 md:space-y-4">
-              <h4 className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-brand-ivory mb-4 md:mb-6">Client Care</h4>
-              <ul className="space-y-3 md:space-y-4 text-sm">
-                <li><Link href="/contact" className="hover:text-brand-gold transition-colors">Contact Us</Link></li>
-                <li><Link href="/faq" className="hover:text-brand-gold transition-colors">FAQ</Link></li>
-                <li><Link href="/terms" className="hover:text-brand-gold transition-colors">Terms of Service</Link></li>
-                <li><Link href="/privacy" className="hover:text-brand-gold transition-colors">Privacy Policy</Link></li>
-              </ul>
-            </div>
-
           </div>
 
-          <div className="max-w-7xl mx-auto w-full mt-10 md:mt-16 pt-6 md:pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
-            <p className="text-xs md:text-sm text-white/40">
-              © {new Date().getFullYear()} Makulayo. All rights reserved.
+          {/* Copyright */}
+          <div
+            className="max-w-7xl mx-auto mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
+            style={{ borderTop: "1px solid var(--border)" }}
+          >
+            <p style={{ fontSize: "var(--caption)", color: "var(--text-faint)" }}>
+              © {new Date().getFullYear()} MAKULAYO®. All rights reserved.
             </p>
-            <div className="flex space-x-6 text-xs md:text-sm font-semibold tracking-wider">
-              <a href="#" className="text-white/40 hover:text-brand-gold transition-colors">IG</a>
-              <a href="#" className="text-white/40 hover:text-brand-gold transition-colors">X</a>
-              <a href="#" className="text-white/40 hover:text-brand-gold transition-colors">FB</a>
-            </div>
           </div>
         </div>
       </div>

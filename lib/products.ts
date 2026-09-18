@@ -16,6 +16,8 @@ export type Product = {
   gender?: string;
   suitableFor?: string[];
   image: string;
+  size: string;
+  type: string;
 };
 
 export const products: Product[] = [
@@ -41,6 +43,8 @@ export const products: Product[] = [
     gender: "Primarily Masculine • Unisex Appeal",
     suitableFor: ["Men", "Sports", "Everyday Wear", "Office & Casual", "Day & Evening", "Spring • Summer • Autumn"],
     image: "/apex.png",
+    size: "50ml",
+    type: "Eau de Parfum",
   },
   {
     id: "m2",
@@ -65,6 +69,8 @@ export const products: Product[] = [
     gender: "Unisex (Feminine-Leaning)\n\nCrimson Eden is crafted for anyone who loves vibrant fruity-floral fragrances. Its juicy apple, delicate florals, and creamy vanilla create a beautifully balanced scent that can be enjoyed by both men and women while maintaining a slightly feminine character.",
     suitableFor: ["Unisex", "Everyday Wear", "Office & Casual", "Date Nights", "Day & Evening", "Spring • Summer • Autumn"],
     image: "/crimson-eden.png",
+    size: "50ml",
+    type: "Eau de Parfum",
   },
   {
     id: "m3",
@@ -89,6 +95,8 @@ export const products: Product[] = [
     gender: "Masculine-Leaning Unisex\n\nWhile Tidal Rush has a fresh, aquatic character traditionally associated with men's fragrances, its smooth fruity and amber notes make it an excellent choice for anyone who enjoys clean, modern, and long-lasting scents.",
     suitableFor: ["Men", "Unisex", "Everyday Wear", "Office & Casual", "Date Nights", "Day & Evening", "Spring • Summer • Autumn"],
     image: "/tidal-rush.png",
+    size: "50ml",
+    type: "Eau de Parfum",
   },
   {
     id: "m4",
@@ -113,6 +121,8 @@ export const products: Product[] = [
     gender: "Unisex\n\nGolden Ember is crafted for anyone who appreciates rich gourmand fragrances. Its warm spices, creamy vanilla, and deep amber create a perfectly balanced scent that feels luxurious on both men and women.",
     suitableFor: ["Unisex", "Evening Wear", "Date Nights", "Parties & Special Occasions", "Autumn & Winter", "Elegance Seekers"],
     image: "/golden-ember.png",
+    size: "50ml",
+    type: "Eau de Parfum",
   },
   {
     id: "m5",
@@ -137,5 +147,7 @@ export const products: Product[] = [
     gender: "Unisex (Feminine-Leaning)\n\nVeloura Noir is designed for anyone who appreciates rich floral-gourmand fragrances. Its creamy vanilla, smooth coffee, and warm woods create a luxurious balance that feels elegant on both men and women, while maintaining a slightly feminine character.",
     suitableFor: ["Unisex", "Evening Wear", "Date Nights", "Parties & Special Occasions", "Autumn & Winter", "Elegance Seekers"],
     image: "/veloura-noir.png",
+    size: "50ml",
+    type: "Eau de Parfum",
   }
 ];

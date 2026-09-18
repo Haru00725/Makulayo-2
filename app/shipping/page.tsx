@@ -5,52 +5,36 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Package, Truck, CheckCircle2, Box } from "lucide-react";
 
-// Mock database for tracking statuses
-const MOCK_SHIPMENTS: Record<string, any> = {
+const MOCK_SHIPMENTS: Record<string, { status: string; items: string[]; estimatedDelivery: string; carrier: string; steps: { name: string; completed: boolean; date: string; current?: boolean }[] }> = {
   "MAK-123456": {
     status: "in-transit",
-    items: ["MAKULAYO No. 1 - 50ml"],
+    items: ["Golden Ember — 50ml"],
     estimatedDelivery: "Aug 12, 2026",
-    carrier: "FedEx",
+    carrier: "Delhivery",
     steps: [
       { name: "Order Placed", completed: true, date: "Aug 02, 10:00 AM" },
       { name: "Processing", completed: true, date: "Aug 03, 02:30 PM" },
       { name: "In Transit", completed: true, date: "Aug 04, 08:15 AM", current: true },
       { name: "Out for Delivery", completed: false, date: "Pending" },
-      { name: "Delivered", completed: false, date: "Pending" }
-    ]
+      { name: "Delivered", completed: false, date: "Pending" },
+    ],
   },
-  "MAK-999999": {
-    status: "delivered",
-    items: ["MAKULAYO No. 5 - 100ml", "MAKULAYO Discovery Set"],
-    estimatedDelivery: "Delivered on Aug 01, 2026",
-    carrier: "UPS",
-    steps: [
-      { name: "Order Placed", completed: true, date: "Jul 25, 09:12 AM" },
-      { name: "Processing", completed: true, date: "Jul 26, 11:00 AM" },
-      { name: "In Transit", completed: true, date: "Jul 28, 04:20 PM" },
-      { name: "Out for Delivery", completed: true, date: "Aug 01, 07:05 AM" },
-      { name: "Delivered", completed: true, date: "Aug 01, 01:45 PM", current: true }
-    ]
-  }
 };
 
 export default function ShippingPage() {
   const [trackingNumber, setTrackingNumber] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-  const [result, setResult] = useState<any | null>(null);
+  const [result, setResult] = useState<(typeof MOCK_SHIPMENTS)[string] | null>(null);
   const [error, setError] = useState("");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!trackingNumber.trim()) return;
-
     setIsSearching(true);
     setError("");
     setSearchQuery(trackingNumber);
 
-    // Simulate network delay
     setTimeout(() => {
       const data = MOCK_SHIPMENTS[trackingNumber.trim().toUpperCase()];
       if (data) {
@@ -60,119 +44,213 @@ export default function ShippingPage() {
         setError("We couldn't find a shipment with that tracking number. (Try MAK-123456)");
       }
       setIsSearching(false);
-    }, 800);
+    }, 600);
   };
 
+  const stepIcons = [Package, Box, Truck, Truck, CheckCircle2];
+
   return (
-    <main className="bg-brand-void min-h-screen selection:bg-brand-gold/30 selection:text-brand-ivory flex flex-col">
+    <main style={{ background: "var(--bg)", minHeight: "100vh", color: "var(--text)" }}>
       <Navbar />
-      
-      <div className="flex-1 flex flex-col items-center p-6 mt-32 relative z-20 w-full max-w-3xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-brand-ivory mb-4">Track Your Order</h1>
-          <p className="text-brand-ivory-muted text-lg max-w-md mx-auto">
-            Enter your Makulayo tracking number below to see the status of your shipment.
-          </p>
+
+      <div className="max-w-3xl mx-auto px-5 md:px-8" style={{ paddingTop: "160px", paddingBottom: "var(--section-pad)" }}>
+        {/* Shipping & Returns Info */}
+        <h1
+          className="mb-12"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "var(--display-lg)",
+            letterSpacing: "var(--tracking-display-lg)",
+          }}
+        >
+          SHIPPING & RETURNS
+        </h1>
+
+        <div className="space-y-10 mb-20">
+          <section>
+            <h2
+              className="mb-4 pb-3"
+              style={{
+                fontSize: "var(--eyebrow)",
+                letterSpacing: "var(--tracking-eyebrow)",
+                color: "var(--gold)",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              SHIPPING POLICY
+            </h2>
+            <div style={{ fontSize: "var(--body)", lineHeight: 1.7, color: "var(--text-muted)" }}>
+              <p className="mb-3">Complimentary standard shipping on all orders over ₹1,999. Orders are processed and delivered within 2 business days.</p>
+              <ul className="space-y-2 pl-4" style={{ listStyleType: "disc" }}>
+                <li>Standard shipping (2 business days): ₹99 (free over ₹1,999)</li>
+                <li>Express delivery (1 business day): ₹249</li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <h2
+              className="mb-4 pb-3"
+              style={{
+                fontSize: "var(--eyebrow)",
+                letterSpacing: "var(--tracking-eyebrow)",
+                color: "var(--gold)",
+                borderBottom: "1px solid var(--border)",
+              }}
+            >
+              2-DAY RETURN POLICY
+            </h2>
+            <div style={{ fontSize: "var(--body)", lineHeight: 1.7, color: "var(--text-muted)" }}>
+              <p className="mb-3">
+                Fragrances are a personal product. We maintain a strict 2-day return policy to ensure inventory integrity.
+              </p>
+              <p className="mb-3">
+                To be eligible: the item must be unopened, in original packaging with the cellophane seal intact. Initiate returns within 2 days of delivery.
+              </p>
+              <p>
+                To start a return, contact us at{" "}
+                <a href="mailto:makulayo@gmail.com" style={{ color: "var(--gold)" }}>makulayo@gmail.com</a>{" "}
+                with your order number.
+              </p>
+            </div>
+          </section>
         </div>
 
-        <form onSubmit={handleSearch} className="w-full relative mb-16 group">
-          <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
-            <Search className="h-6 w-6 text-brand-ivory-muted group-focus-within:text-brand-gold transition-colors" />
-          </div>
-          <input 
-            type="text" 
-            value={trackingNumber}
-            onChange={(e) => setTrackingNumber(e.target.value)}
-            className="w-full bg-brand-surface/30 backdrop-blur-md border border-brand-ivory/10 rounded-full pl-16 pr-40 py-6 text-lg text-brand-ivory placeholder:text-brand-ivory/30 focus:outline-none focus:border-brand-gold/50 transition-colors shadow-2xl shadow-black/50"
-            placeholder="e.g., MAK-123456"
-          />
-          <div className="absolute inset-y-2 right-2">
-            <button 
+        {/* Track order section */}
+        <div style={{ borderTop: "1px solid var(--border)", paddingTop: "var(--space-16)" }}>
+          <h2
+            className="mb-4"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "var(--display-md)",
+              letterSpacing: "var(--tracking-display-md)",
+            }}
+          >
+            TRACK YOUR ORDER
+          </h2>
+          <p className="mb-8" style={{ fontSize: "var(--body)", color: "var(--text-muted)" }}>
+            Enter your tracking number to check your shipment status.
+          </p>
+
+          <form onSubmit={handleSearch} className="flex items-center gap-3 mb-12">
+            <div className="flex-1 relative">
+              <input
+                type="text"
+                value={trackingNumber}
+                onChange={(e) => setTrackingNumber(e.target.value)}
+                className="w-full bg-transparent outline-none py-3 pr-4"
+                style={{
+                  borderBottom: "1px solid var(--border-strong)",
+                  color: "var(--text)",
+                  fontSize: "var(--body)",
+                }}
+                placeholder="e.g. MAK-123456"
+                onFocus={(e) => (e.currentTarget.style.borderColor = "var(--gold)")}
+                onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border-strong)")}
+              />
+            </div>
+            <button
               type="submit"
               disabled={isSearching || !trackingNumber.trim()}
-              className="h-full px-8 rounded-full crystal-glass-highlight bg-brand-ivory/10 text-brand-gold font-bold tracking-wide hover:brightness-125 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="py-3 px-6 transition-all disabled:opacity-30"
+              style={{
+                border: "1px solid var(--gold-dim)",
+                color: "var(--gold)",
+                fontSize: "var(--eyebrow)",
+                letterSpacing: "var(--tracking-eyebrow)",
+                background: "transparent",
+              }}
             >
-              {isSearching ? "Searching..." : "Track"}
+              {isSearching ? "..." : "TRACK"}
             </button>
-          </div>
-        </form>
+          </form>
 
-        <AnimatePresence mode="wait">
-          {error && (
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-red-500/10 border border-red-500/20 text-red-200 px-6 py-4 rounded-xl text-center w-full"
-            >
-              {error}
-            </motion.div>
-          )}
+          <AnimatePresence mode="wait">
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="p-4 mb-8"
+                style={{
+                  background: "rgba(180, 106, 95, 0.1)",
+                  border: "1px solid rgba(180, 106, 95, 0.2)",
+                  color: "var(--error)",
+                  fontSize: "var(--body)",
+                }}
+              >
+                {error}
+              </motion.div>
+            )}
 
-          {result && !error && !isSearching && (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              className="w-full crystal-glass p-8 md:p-10 rounded-3xl relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/5 blur-[100px] rounded-full pointer-events-none" />
-              
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 border-b border-brand-ivory/10 pb-8">
-                <div>
-                  <h2 className="text-2xl font-bold text-brand-ivory mb-1">Order {searchQuery.toUpperCase()}</h2>
-                  <p className="text-brand-ivory-muted">{result.carrier} • Estimated Delivery: <span className="text-brand-gold">{result.estimatedDelivery}</span></p>
+            {result && !error && !isSearching && (
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 12 }}
+                className="p-6 md:p-8"
+                style={{
+                  background: "var(--surface)",
+                  border: "1px solid var(--border)",
+                }}
+              >
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-6" style={{ borderBottom: "1px solid var(--border)" }}>
+                  <div>
+                    <h3 className="font-bold mb-1" style={{ color: "var(--text)", fontSize: "var(--body-lg)" }}>
+                      Order {searchQuery.toUpperCase()}
+                    </h3>
+                    <p style={{ fontSize: "var(--caption)", color: "var(--text-muted)" }}>
+                      {result.carrier} · Est. delivery:{" "}
+                      <span style={{ color: "var(--gold)" }}>{result.estimatedDelivery}</span>
+                    </p>
+                  </div>
                 </div>
-                <div className="mt-4 md:mt-0 flex items-center space-x-3 bg-brand-surface/50 px-4 py-2 rounded-full border border-brand-ivory/5">
-                  <Box className="w-5 h-5 text-brand-gold" />
-                  <span className="text-sm font-medium text-brand-ivory">{result.items.length} Item{result.items.length > 1 ? 's' : ''}</span>
-                </div>
-              </div>
 
-              <div className="relative">
-                {/* Timeline Line */}
-                <div className="absolute left-6 top-8 bottom-8 w-[2px] bg-brand-ivory/10 md:left-auto md:top-8 md:right-8 md:bottom-auto md:w-[calc(100%-4rem)] md:h-[2px] md:-translate-y-1/2" />
-                
-                <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 relative">
-                  {result.steps.map((step: any, index: number) => {
-                    const isCompleted = step.completed;
-                    const isCurrent = step.current;
-                    
+                <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-4">
+                  {result.steps.map((step, index) => {
+                    const Icon = stepIcons[index];
                     return (
-                      <div key={index} className="flex md:flex-col items-center md:items-center relative z-10 w-full md:w-32 group">
-                        {/* Icon Node */}
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 mb-0 md:mb-4 transition-colors duration-500
-                          ${isCurrent ? 'bg-brand-gold text-brand-void shadow-[0_0_30px_rgba(207,181,114,0.3)]' : 
-                            isCompleted ? 'bg-brand-gold/20 text-brand-gold border border-brand-gold/30' : 
-                            'bg-brand-surface border border-brand-ivory/10 text-brand-ivory/30'}
-                        `}>
-                          {index === 0 && <Package className="w-5 h-5" />}
-                          {index === 1 && <Box className="w-5 h-5" />}
-                          {index === 2 && <Truck className="w-5 h-5" />}
-                          {index === 3 && <Truck className="w-5 h-5" />}
-                          {index === 4 && <CheckCircle2 className="w-5 h-5" />}
+                      <div key={index} className="flex md:flex-col items-center md:items-center gap-4 md:gap-3 md:flex-1">
+                        <div
+                          className="w-10 h-10 flex items-center justify-center shrink-0"
+                          style={{
+                            background: step.current
+                              ? "var(--gold)"
+                              : step.completed
+                                ? "var(--gold-glow)"
+                                : "var(--surface-alt)",
+                            border: step.completed ? "1px solid var(--gold-dim)" : "1px solid var(--border)",
+                            color: step.current
+                              ? "var(--bg)"
+                              : step.completed
+                                ? "var(--gold)"
+                                : "var(--text-faint)",
+                          }}
+                        >
+                          <Icon size={16} strokeWidth={1.5} />
                         </div>
-                        
-                        {/* Desktop connection lines overlay (active state) */}
-                        {index < result.steps.length - 1 && isCompleted && (
-                          <div className="hidden md:block absolute top-6 left-[50%] w-full h-[2px] bg-brand-gold origin-left transition-transform duration-1000 ease-out" />
-                        )}
-
-                        {/* Text */}
-                        <div className="ml-6 md:ml-0 text-left md:text-center">
-                          <p className={`font-medium mb-1 transition-colors ${isCompleted || isCurrent ? 'text-brand-ivory' : 'text-brand-ivory/40'}`}>
+                        <div className="md:text-center">
+                          <p
+                            className="font-medium"
+                            style={{
+                              fontSize: "var(--caption)",
+                              color: step.completed || step.current ? "var(--text)" : "var(--text-faint)",
+                            }}
+                          >
                             {step.name}
                           </p>
-                          <p className="text-xs text-brand-ivory-muted/70">{step.date}</p>
+                          <p style={{ fontSize: "var(--caption)", color: "var(--text-faint)" }}>
+                            {step.date}
+                          </p>
                         </div>
                       </div>
                     );
                   })}
                 </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </main>
   );

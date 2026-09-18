@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond, Montserrat, Syne } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,29 +8,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "MAKULAYO | Eau de Parfum",
-  description: "Crafted for those who notice. Exquisite Eau de Parfums. No compromises.",
+  title: "MAKULAYO® | Eau de Parfum",
+  description: "Three layers. One signature. Eau de Parfum crafted for those who notice.",
 };
 
 import { AuthProvider } from "@/components/AuthProvider";
@@ -43,11 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable} ${montserrat.variable} ${syne.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <AuthProvider>
           <CartProvider>
-            <div className="relative z-10 bg-brand-void flex-1 flex flex-col transition-all">
+            <div className="relative z-[1] bg-[var(--bg)] flex-1 flex flex-col transition-all">
               {children}
             </div>
             <Footer />
