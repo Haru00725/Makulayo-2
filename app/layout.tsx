@@ -13,6 +13,12 @@ export const metadata: Metadata = {
   description: "Three layers. One signature. Eau de Parfum crafted for those who notice.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 import { AuthProvider } from "@/components/AuthProvider";
 import { CartProvider } from "@/components/CartProvider";
 import { Footer } from "@/components/Footer";

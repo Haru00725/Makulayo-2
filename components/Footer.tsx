@@ -57,25 +57,8 @@ export function Footer() {
           <div className="absolute inset-0" style={{ background: "var(--bg)", opacity: 0.6 }} />
         </div>
 
-        {/* Wordmark */}
-        <div
-          className="relative z-10 text-center"
-          style={{
-            paddingTop: "var(--section-pad)",
-            paddingBottom: "var(--space-16)",
-          }}
-        >
-          <Image
-            src="/logo-makulayo.png"
-            alt="MAKULAYO™"
-            width={480}
-            height={96}
-            className="w-64 md:w-80 lg:w-96 h-auto object-contain mx-auto"
-          />
-        </div>
-
         {/* Columns */}
-        <div className="relative z-10 px-5 md:px-8 pb-16">
+        <div className="relative z-10 px-5 md:px-8 pt-16 md:pt-24 pb-16">
           <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {/* Brand blurb */}
             <div className="col-span-2 md:col-span-1 space-y-6">
@@ -201,27 +184,7 @@ export function Footer() {
             className="max-w-7xl mx-auto mt-12 pt-8"
             style={{ borderTop: "1px solid var(--border)" }}
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h4
-                  className="mb-3"
-                  style={{
-                    fontSize: "var(--eyebrow)",
-                    letterSpacing: "var(--tracking-eyebrow)",
-                    color: "var(--text-muted)",
-                  }}
-                >
-                  REGISTERED BUSINESS
-                </h4>
-                <div style={{ fontSize: "var(--caption)", color: "var(--text-faint)", lineHeight: 1.8 }}>
-                  <p>MAKULAYO</p>
-                  <p>Third Floor, E-147, Block-E</p>
-                  <p>Gali No. 3, West Vinod Nagar</p>
-                  <p>Near Silver Line Hospital</p>
-                  <p>Vinod Nagar West, New Delhi</p>
-                  <p>East Delhi, Delhi — 110092</p>
-                </div>
-              </div>
+            <div className="grid grid-cols-1 gap-6">
               <div>
                 <h4
                   className="mb-3"
@@ -246,20 +209,7 @@ export function Footer() {
                       makulayo@gmail.com
                     </a>
                   </p>
-                  <p>
-                    Phone:{" "}
-                    <a
-                      href="tel:+919953142247"
-                      className="transition-colors"
-                      style={{ color: "var(--text-muted)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
-                    >
-                      +91 99531 42247
-                    </a>
-                  </p>
                   <p>Grievance Officer: To be announced</p>
-                  <p>Response timeline: 48 hours</p>
                 </div>
               </div>
             </div>

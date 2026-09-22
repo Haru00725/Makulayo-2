@@ -142,6 +142,7 @@ export function Navbar() {
               alt="MAKULAYO™"
               width={160}
               height={32}
+              quality={100}
               className="w-40 md:w-56 h-auto object-contain"
               priority
             />
