@@ -88,32 +88,44 @@ export function Navbar() {
       {/* Announcement Bar */}
       {!announcementDismissed && (
         <div
-          className="fixed top-0 left-0 w-full z-[110] flex items-center justify-center"
+          className="fixed top-0 left-0 w-full z-[110] flex items-center overflow-hidden"
           style={{
             height: "36px",
-            background: "var(--surface)",
+            background: "#FFFFFF",
             borderBottom: "1px solid var(--border)",
           }}
         >
-          <p
-            className="text-center uppercase"
-            style={{
-              color: "var(--text-muted)",
-              fontSize: "var(--caption)",
-              letterSpacing: "var(--tracking-eyebrow)",
-            }}
-          >
-            Free shipping on orders over ₹1999
-          </p>
+          <div className="flex animate-marquee whitespace-nowrap" style={{ width: "max-content" }}>
+            {[...Array(10)].map((_, i) => (
+              <span
+                key={i}
+                className="uppercase inline-block px-4"
+                style={{
+                  color: "#000000",
+                  fontSize: "var(--caption)",
+                  letterSpacing: "var(--tracking-eyebrow)",
+                  fontWeight: 600,
+                }}
+              >
+                FREE SHIPPING ON ORDERS OVER ₹1999 &nbsp;&nbsp; • &nbsp;&nbsp; 10% OFF ON FIRST ORDER &nbsp;&nbsp; • &nbsp;&nbsp;
+              </span>
+            ))}
+          </div>
           <button
             onClick={dismissAnnouncement}
-            className="absolute right-4 top-1/2 -translate-y-1/2 transition-colors"
-            style={{ color: "var(--text-faint)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-faint)")}
+            className="absolute right-4 top-1/2 -translate-y-1/2 transition-all z-10"
+            style={{ 
+              color: "#000000", 
+              background: "#FFFFFF",
+              borderRadius: "50%",
+              padding: "4px",
+              boxShadow: "-10px 0 15px 5px #FFFFFF" // Fade out text behind it
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.6")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             aria-label="Dismiss announcement"
           >
-            <X size={14} />
+            <X size={14} strokeWidth={2.5} />
           </button>
         </div>
       )}
