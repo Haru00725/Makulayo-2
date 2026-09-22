@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { AuthProvider } from "@/components/AuthProvider";
+import { CartProvider } from "@/components/CartProvider";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,10 +21,6 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
 };
-
-import { AuthProvider } from "@/components/AuthProvider";
-import { CartProvider } from "@/components/CartProvider";
-import { Footer } from "@/components/Footer";
 
 export default function RootLayout({
   children,
