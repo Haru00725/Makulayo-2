@@ -80,7 +80,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
         style={{ opacity: heroOpacity, y: heroY }}
         className="absolute inset-0 flex flex-col items-center justify-center text-center z-10"
       >
-        <h1 className="mb-4">
+        <h1 className="mb-10">
           <Image
             src="/logo-makulayo.png"
             alt="MAKULAYO™"
