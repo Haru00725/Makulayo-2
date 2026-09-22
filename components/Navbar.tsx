@@ -111,22 +111,6 @@ export function Navbar() {
               </span>
             ))}
           </div>
-          <button
-            onClick={dismissAnnouncement}
-            className="absolute right-4 top-1/2 -translate-y-1/2 transition-all z-10"
-            style={{ 
-              color: "#000000", 
-              background: "#FFFFFF",
-              borderRadius: "50%",
-              padding: "4px",
-              boxShadow: "-10px 0 15px 5px #FFFFFF" // Fade out text behind it
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.6")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-            aria-label="Dismiss announcement"
-          >
-            <X size={14} strokeWidth={2.5} />
-          </button>
         </div>
       )}
 
