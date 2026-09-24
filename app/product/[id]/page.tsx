@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!product) return { title: "Product Not Found" };
 
   return {
-    title: `${product.name} — ${product.size} ${product.type} | MAKULAYO®`,
+    title: `${product.name} — ${product.size} ${product.type} | MAKULAYO`,
     description: `${product.tagline || ""} ${product.family || ""}. ${product.size} ${product.type}. ₹1,499.`.trim(),
   };
 }

@@ -408,13 +408,11 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
                         {/* Brand mark */}
                         <div className="text-center mb-6 relative z-10">
-                            <Image
-                                src="/logo-makulayo.png"
-                                alt="MAKULAYO™"
-                                width={120}
-                                height={24}
-                                className="w-32 md:w-48 h-auto object-contain mx-auto"
-                            />
+                            <div className="flex justify-center items-center">
+                                <span className="logo-text text-3xl md:text-4xl font-bold">
+                                    MAKULAYO<span className="text-[0.35em] font-normal tracking-normal relative -top-[1.5em] ml-[-0.4em]">™</span>
+                                </span>
+                            </div>
                         </div>
 
                         <div className="relative z-10">

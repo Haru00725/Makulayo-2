@@ -117,11 +117,7 @@ body {
 
 .logo-text {
   font-family: var(--font-display);
-  background: linear-gradient(to bottom, #D9B978 0%, #C6A15B 50%, #A8823F 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: var(--gold);
   font-weight: 500;
   letter-spacing: 0.15em;
   display: inline-block;

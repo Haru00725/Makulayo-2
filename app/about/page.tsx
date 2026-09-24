@@ -2,7 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Philosophy | MAKULAYO®",
+  title: "Our Philosophy | MAKULAYO",
   description: "Blended in India. IFRA-compliant Eau de Parfum crafted for those who notice.",
 };
 

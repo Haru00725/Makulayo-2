@@ -80,15 +80,10 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
         style={{ opacity: heroOpacity, y: heroY }}
         className="absolute inset-0 flex flex-col items-center justify-center text-center z-10"
       >
-        <h1 className="mb-10">
-          <Image
-            src="/logo-makulayo.png"
-            alt="MAKULAYO™"
-            width={600}
-            height={120}
-            className="w-[320px] md:w-[560px] lg:w-[720px] h-auto object-contain mx-auto"
-            priority
-          />
+        <h1 className="mb-10 text-center flex justify-center">
+          <span className="logo-text text-5xl md:text-7xl lg:text-8xl font-bold">
+            MAKULAYO<span className="text-[0.35em] font-normal tracking-normal relative -top-[1.5em] ml-[-0.4em]">™</span>
+          </span>
         </h1>
         <p
           className="mb-8"
@@ -126,13 +121,6 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
           EXPLORE THE COLLECTION
         </Link>
 
-        {/* Scroll cue */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 scroll-cue">
-          <div
-            className="w-[1px] h-10 mx-auto"
-            style={{ background: "var(--gold)" }}
-          />
-        </div>
       </motion.div>
 
       {/* 2. Three Layers — Educational */}

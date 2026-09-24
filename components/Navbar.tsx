@@ -133,15 +133,9 @@ export function Navbar() {
         <div className="h-full max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
           {/* Left: Wordmark */}
           <Link href="/" className="flex items-start shrink-0">
-            <Image
-              src="/logo-makulayo.png"
-              alt="MAKULAYO™"
-              width={160}
-              height={32}
-              quality={100}
-              className="w-40 md:w-56 h-auto object-contain"
-              priority
-            />
+            <span className="logo-text text-2xl md:text-3xl font-bold">
+              MAKULAYO<span className="text-[0.35em] font-normal tracking-normal relative -top-[1.5em] ml-[-0.4em]">™</span>
+            </span>
           </Link>
 
           {/* Centre: Nav Links (desktop) */}

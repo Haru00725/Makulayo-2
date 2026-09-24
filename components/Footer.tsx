@@ -221,7 +221,7 @@ export function Footer() {
             style={{ borderTop: "1px solid var(--border)" }}
           >
             <p style={{ fontSize: "var(--caption)", color: "var(--text-faint)" }}>
-              © {new Date().getFullYear()} MAKULAYO®. All rights reserved.
+              © {new Date().getFullYear()} MAKULAYO. All rights reserved.
             </p>
           </div>
         </div>

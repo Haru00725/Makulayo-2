@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "MAKULAYO® | Eau de Parfum",
+  title: "MAKULAYO | Eau de Parfum",
   description: "Three layers. One signature. Eau de Parfum crafted for those who notice.",
 };
 
