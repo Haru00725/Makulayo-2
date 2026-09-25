@@ -19,13 +19,20 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
     return (
         <div
-            className={`${spaceGrotesk.variable} ${inter.variable} min-h-screen bg-white text-[#14140F]`}
-            style={{ fontFamily: "var(--font-body)" }}
+            className={`${spaceGrotesk.variable} ${inter.variable}`}
+            style={{
+                fontFamily: "var(--font-body)",
+                background: "#0A0A0A",
+                color: "#F2EFE9",
+                minHeight: "100vh",
+            }}
         >
-            <div className="flex">
+            <div className="flex min-h-screen">
                 <AdminSidebar />
-                <main className="flex-1 min-w-0">
-                    <div className="max-w-[1040px] mx-auto px-10 py-12">{children}</div>
+                <main className="flex-1 min-w-0 admin-main-content">
+                    <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8 lg:py-12">
+                        {children}
+                    </div>
                 </main>
             </div>
         </div>

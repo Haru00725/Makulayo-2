@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { isLikelyDelhiNCR } from "@/lib/pincode";
+import { Truck, Package, MapPin, AlertTriangle, Loader2 } from "lucide-react";
 
 type Order = {
     id: string;
@@ -45,44 +46,111 @@ export function OrderFulfillmentRow({ order }: { order: Order }) {
     }
 
     return (
-        <div className="border border-[#E4E4E1] rounded-[4px] px-5 py-4">
-            <div className="flex items-start justify-between mb-3">
-                <div>
-                    <p className="text-[14px] font-medium">
+        <div
+            className="rounded-lg px-4 sm:px-5 py-4"
+            style={{
+                background: "#121212",
+                border: "1px solid rgba(255,255,255,0.06)",
+            }}
+        >
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-3">
+                <div className="min-w-0">
+                    <p className="text-[13px] sm:text-[14px] font-medium" style={{ color: "#F2EFE9" }}>
                         {address?.full_name}{" "}
-                        <span className="text-[#9C9C95] font-normal">#{order.id.slice(0, 8)}</span>
+                        <span className="font-normal" style={{ color: "#6B675F" }}>
+                            #{order.id.slice(0, 8)}
+                        </span>
                     </p>
-                    <p className="text-[13px] text-[#6E6E68] mt-0.5">
+                    <p className="text-[12px] sm:text-[13px] mt-0.5 flex items-center gap-1.5" style={{ color: "#6B675F" }}>
+                        <MapPin size={11} />
                         {address?.city}, {address?.state} — {address?.pincode}
-                        {suggestedManual && <span className="text-[#8A6414]"> · looks like Delhi NCR</span>}
+                        {suggestedManual && (
+                            <span className="flex items-center gap-1" style={{ color: "#D9B978" }}>
+                                <AlertTriangle size={10} />
+                                Delhi NCR
+                            </span>
+                        )}
                     </p>
-                    <p className="text-[13px] text-[#6E6E68] mt-1">
+                    <p className="text-[12px] sm:text-[13px] mt-1" style={{ color: "#9A958C" }}>
                         {order.order_items.map((i) => `${i.product_name} × ${i.quantity}`).join(", ")}
                     </p>
                 </div>
                 <span
-                    className="text-[16px] font-bold"
-                    style={{ fontFamily: "var(--font-display)" }}
+                    className="text-[15px] sm:text-[16px] font-bold shrink-0"
+                    style={{ fontFamily: "var(--font-display)", color: "#C6A15B" }}
                 >
                     ₹{Number(order.total_amount).toLocaleString("en-IN")}
                 </span>
             </div>
 
-            {error && <p className="text-[12px] text-[#B3261E] mb-2">{error}</p>}
+            {error && (
+                <p
+                    className="text-[12px] mb-2 flex items-center gap-1.5 px-3 py-2 rounded-md"
+                    style={{
+                        color: "#B46A5F",
+                        background: "rgba(180,106,95,0.1)",
+                    }}
+                >
+                    <AlertTriangle size={12} />
+                    {error}
+                </p>
+            )}
 
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
                 <button
                     onClick={() => handleFulfill("manual")}
                     disabled={loading !== null}
-                    className="text-[13px] px-3 py-1.5 rounded-[4px] border border-[#E4E4E1] hover:bg-[#FAFAF9] disabled:opacity-50 transition-colors"
+                    style={{
+                        fontSize: "13px",
+                        padding: "8px 14px",
+                        borderRadius: "6px",
+                        border: "1px solid rgba(255,255,255,0.1)",
+                        background: "transparent",
+                        color: loading === "manual" ? "#D9B978" : "#9A958C",
+                        cursor: loading !== null ? "not-allowed" : "pointer",
+                        transition: "all 200ms ease",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "6px",
+                        opacity: loading !== null && loading !== "manual" ? 0.4 : 1,
+                    }}
                 >
-                    {loading === "manual" ? "Marking as manual…" : "Mark as manual delivery"}
+                    {loading === "manual" ? (
+                        <Loader2 size={14} className="animate-spin" />
+                    ) : (
+                        <Package size={14} />
+                    )}
+                    {loading === "manual" ? "Marking…" : "Manual delivery"}
                 </button>
                 <button
                     onClick={() => handleFulfill("shiprocket")}
                     disabled={loading !== null}
-                    className="text-[13px] px-3 py-1.5 rounded-[4px] bg-[#2F3A8F] text-white hover:bg-[#262F73] disabled:opacity-50 transition-colors"
+                    style={{
+                        fontSize: "13px",
+                        padding: "8px 14px",
+                        borderRadius: "6px",
+                        border: "none",
+                        background:
+                            loading !== null && loading !== "shiprocket"
+                                ? "rgba(198,161,91,0.2)"
+                                : "linear-gradient(135deg, #C6A15B, #D9B978)",
+                        color: "#0A0A0A",
+                        fontWeight: 600,
+                        cursor: loading !== null ? "not-allowed" : "pointer",
+                        transition: "all 200ms ease",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "6px",
+                        opacity: loading !== null && loading !== "shiprocket" ? 0.4 : 1,
+                    }}
                 >
+                    {loading === "shiprocket" ? (
+                        <Loader2 size={14} className="animate-spin" />
+                    ) : (
+                        <Truck size={14} />
+                    )}
                     {loading === "shiprocket" ? "Creating order…" : "Ship via Shiprocket"}
                 </button>
             </div>
