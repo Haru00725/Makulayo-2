@@ -432,8 +432,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         initial={{ scale: 0.95, opacity: 0, y: 20 }}
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.95, opacity: 0, y: 20 }}
-                        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                         className="crystal-glass p-8 md:p-10 rounded-3xl w-full max-w-md relative overflow-hidden"
+                        style={{ willChange: "transform, opacity" }}
                     >
                         {/* Glow effect */}
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-32 bg-brand-gold/8 blur-[80px] rounded-full pointer-events-none" />

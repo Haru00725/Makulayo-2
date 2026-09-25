@@ -60,6 +60,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
               left: p.left,
               top: p.top,
               boxShadow: "0 0 8px 1px var(--gold)",
+              willChange: "transform, opacity",
             }}
             animate={{
               y: [0, p.yOffset],
@@ -77,7 +78,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
 
       {/* 1. Hero */}
       <motion.div
-        style={{ opacity: heroOpacity, y: heroY }}
+        style={{ opacity: heroOpacity, y: heroY, willChange: "transform, opacity" }}
         className="absolute inset-0 flex flex-col items-center justify-center text-center z-10"
       >
         <h1 className="mb-10 text-center flex justify-center">
@@ -125,7 +126,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
 
       {/* 2. Three Layers — Educational */}
       <motion.div
-        style={{ opacity: notesOpacity, y: notesY }}
+        style={{ opacity: notesOpacity, y: notesY, willChange: "transform, opacity" }}
         className="absolute inset-0 flex flex-col items-center justify-center px-8 md:px-24 text-center z-10"
       >
         <div className="w-full max-w-4xl">
@@ -190,7 +191,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
 
       {/* 3. Closing Statement */}
       <motion.div
-        style={{ opacity: sprayOpacity, y: sprayY }}
+        style={{ opacity: sprayOpacity, y: sprayY, willChange: "transform, opacity" }}
         className="absolute inset-0 flex flex-col items-center justify-center text-center px-8 z-10"
       >
         <p
