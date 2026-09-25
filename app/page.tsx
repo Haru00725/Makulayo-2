@@ -1,24 +1,35 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { useScroll } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { useScroll, useInView } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { ScrollytellingOverlay } from "@/components/ScrollytellingOverlay";
 import { products } from "@/lib/products";
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/components/CartProvider";
+import { useAuth } from "@/components/AuthProvider";
 import { ArrowRight, Leaf, ShieldCheck, Award, MapPin } from "lucide-react";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const collectionRef = useRef<HTMLElement>(null);
   const featuredProduct = products[0];
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
+
+  const isCollectionInView = useInView(collectionRef, { once: true, margin: "-200px" });
+  const { user, isLoading } = useAuth();
+
+  useEffect(() => {
+    if (isCollectionInView && !isLoading && !user) {
+      window.dispatchEvent(new CustomEvent("openAuthModal"));
+    }
+  }, [isCollectionInView, user, isLoading]);
 
   const { addToCart, itemPrice } = useCart();
 
@@ -61,6 +72,7 @@ export default function Home() {
           COLLECTION GRID
           ============================================================ */}
       <section
+        ref={collectionRef}
         id="collection"
         className="relative z-[2]"
         style={{

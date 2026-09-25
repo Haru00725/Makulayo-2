@@ -215,10 +215,9 @@ export function ProductPageClient({ product, relatedProducts }: ProductPageClien
 
         {/* Fragrance Architecture panel */}
         <section
-          className="mb-16 p-6 md:p-8"
+          className="mb-16 p-6 md:p-8 md:border md:border-white/10"
           style={{
             background: "var(--surface)",
-            border: "1px solid var(--border)",
           }}
         >
           <h3
@@ -239,8 +238,7 @@ export function ProductPageClient({ product, relatedProducts }: ProductPageClien
             ].map((row, i) => (
               <div
                 key={row.label}
-                className="flex items-baseline gap-6 py-4"
-                style={{ borderTop: i > 0 ? "1px solid var(--border)" : "none" }}
+                className={`flex items-baseline gap-6 py-4 ${i > 0 ? "md:border-t md:border-white/10" : ""}`}
               >
                 <span
                   className="shrink-0 w-16"

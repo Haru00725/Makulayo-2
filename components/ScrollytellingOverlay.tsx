@@ -149,10 +149,7 @@ export function ScrollytellingOverlay({ progress, featuredProduct }: Scrollytell
             ].map((layer, i) => (
               <div
                 key={layer.label}
-                className="flex flex-col items-center px-8"
-                style={{
-                  borderLeft: i > 0 ? "1px solid var(--border)" : "none",
-                }}
+                className={`flex flex-col items-center px-8 ${i > 0 ? "md:border-l border-white/10" : ""}`}
               >
                 <p
                   className="mb-3"

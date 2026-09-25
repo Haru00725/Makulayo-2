@@ -45,6 +45,13 @@ export function Navbar() {
     return () => document.removeEventListener("keydown", handleEscape);
   }, [isCartOpen, mobileMenuOpen, setIsCartOpen]);
 
+  // Listen for global openAuthModal event
+  useEffect(() => {
+    const handleOpenAuth = () => setIsAuthModalOpen(true);
+    window.addEventListener("openAuthModal", handleOpenAuth);
+    return () => window.removeEventListener("openAuthModal", handleOpenAuth);
+  }, []);
+
   // Focus trap for cart drawer
   useEffect(() => {
     if (!isCartOpen || !cartRef.current) return;
@@ -497,9 +504,15 @@ export function Navbar() {
                       ₹{cartTotal.toLocaleString("en-IN")}
                     </span>
                   </div>
-                  <Link
-                    href="/checkout"
-                    onClick={() => setIsCartOpen(false)}
+                  <button
+                    onClick={() => {
+                      setIsCartOpen(false);
+                      if (!user) {
+                        setIsAuthModalOpen(true);
+                      } else {
+                        window.location.href = "/checkout";
+                      }
+                    }}
                     className="block w-full text-center py-4 transition-all"
                     style={{
                       border: "1px solid var(--gold)",
@@ -519,7 +532,7 @@ export function Navbar() {
                     }}
                   >
                     PROCEED TO CHECKOUT
-                  </Link>
+                  </button>
                 </div>
               )}
             </motion.div>

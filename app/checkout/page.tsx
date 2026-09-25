@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { useCart } from "@/components/CartProvider";
 import { useAuth } from "@/components/AuthProvider";
@@ -175,6 +175,12 @@ export default function CheckoutPage() {
   };
 
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  
+  useEffect(() => {
+    if (!user) {
+      setIsAuthModalOpen(true);
+    }
+  }, [user]);
 
   if (!user) {
     return (
