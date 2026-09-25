@@ -58,7 +58,7 @@ export function ProductPageClient({ product, relatedProducts }: ProductPageClien
       title: "SHIPPING & RETURNS",
       content: (
         <div className="space-y-2">
-          <p>Free shipping on orders over ₹1,999. Standard delivery in 2 business days.</p>
+          <p>Free shipping on order over ₹1,999. Standard delivery in 2 business days.</p>
           <p>2-day return policy on unopened, sealed items. Contact us to initiate a return.</p>
         </div>
       ),

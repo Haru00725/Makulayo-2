@@ -114,7 +114,7 @@ export function Navbar() {
                   fontWeight: 600,
                 }}
               >
-                FREE SHIPPING ON ORDERS OVER ₹1999 &nbsp;&nbsp; • &nbsp;&nbsp; 10% OFF ON FIRST ORDER &nbsp;&nbsp; • &nbsp;&nbsp;
+                FREE SHIPPING ON ORDER OVER ₹1999 &nbsp;&nbsp; • &nbsp;&nbsp; 10% OFF ON FIRST ORDER &nbsp;&nbsp; • &nbsp;&nbsp;
               </span>
             ))}
           </div>
