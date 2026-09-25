@@ -146,7 +146,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
                         {error && <ErrorMessage message={error} />}
 
-                        <form onSubmit={handleSignIn} className="space-y-5">
+                        <form onSubmit={handleSignIn} className="space-y-4">
                             <InputField
                                 icon={<Mail size={18} />}
                                 type="email"
@@ -228,7 +228,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
                         {error && <ErrorMessage message={error} />}
 
-                        <form onSubmit={handleSignUp} className="space-y-5">
+                        <form onSubmit={handleSignUp} className="space-y-4">
                             <InputField
                                 icon={<User size={18} />}
                                 type="text"
@@ -435,14 +435,14 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+                    className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
                 >
                     <motion.div
                         initial={{ scale: 0.95, opacity: 0, y: 20 }}
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.95, opacity: 0, y: 20 }}
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="crystal-glass p-8 md:p-10 rounded-3xl w-full max-w-md relative overflow-hidden"
+                        className="crystal-glass p-6 md:p-8 rounded-3xl w-full max-w-md relative overflow-y-auto max-h-[95vh]"
                         style={{ willChange: "transform, opacity" }}
                     >
                         {/* Glow effect */}
