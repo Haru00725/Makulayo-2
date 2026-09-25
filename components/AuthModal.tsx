@@ -442,7 +442,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.95, opacity: 0, y: 20 }}
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="crystal-glass p-6 md:p-8 rounded-3xl w-full max-w-md relative overflow-y-auto max-h-[95vh]"
+                        className="crystal-glass p-6 md:p-8 rounded-3xl w-full max-w-md relative overflow-y-auto overflow-x-hidden max-h-[95vh]"
                         style={{ willChange: "transform, opacity" }}
                     >
                         {/* Glow effect */}
@@ -451,7 +451,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         {/* Close button */}
                         <button
                             onClick={handleClose}
-                            className="absolute top-4 right-4 z-10 p-2 text-brand-ivory-muted hover:text-brand-ivory transition-colors rounded-full hover:bg-white/5"
+                            className="absolute top-4 right-4 z-[60] p-3 text-brand-ivory-muted hover:text-brand-ivory transition-colors rounded-full hover:bg-white/5 cursor-pointer"
                         >
                             <X size={20} />
                         </button>
