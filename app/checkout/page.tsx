@@ -188,8 +188,20 @@ export default function CheckoutPage() {
         <Navbar />
         <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
         <div className="crystal-glass p-10 rounded-3xl max-w-md text-center">
-          <h2 className="text-2xl font-serif font-light mb-4">Sign in to Continue</h2>
-          <p className="text-brand-ivory-muted mb-8 text-sm">You need to be signed in to complete your purchase.</p>
+          <h2 
+            className="mb-4"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "var(--display-sm)",
+              letterSpacing: "var(--tracking-display-sm)",
+              color: "var(--text)"
+            }}
+          >
+            SIGN IN TO CONTINUE
+          </h2>
+          <p style={{ color: "var(--text-muted)", fontSize: "var(--body)", marginBottom: "2rem" }}>
+            You need to be signed in to complete your purchase.
+          </p>
           <button
             onClick={() => setIsAuthModalOpen(true)}
             className="w-full py-4 rounded-xl crystal-glass-highlight crystal-glass text-brand-gold font-semibold tracking-wide hover:brightness-125 transition-all"

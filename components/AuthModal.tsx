@@ -119,11 +119,19 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         transition={{ duration: 0.2 }}
                     >
                         <div className="text-center mb-8">
-                            <h2 className="text-3xl font-serif font-light text-brand-ivory mb-2">
-                                Welcome Back
+                            <h2 
+                                className="mb-2"
+                                style={{
+                                    fontFamily: "var(--font-display)",
+                                    fontSize: "var(--display-sm)",
+                                    letterSpacing: "var(--tracking-display-sm)",
+                                    color: "var(--text)"
+                                }}
+                            >
+                                SIGN IN
                             </h2>
-                            <p className="text-brand-ivory-muted text-sm">
-                                Sign in to your MAKULAYO account
+                            <p style={{ color: "var(--text-muted)", fontSize: "var(--body)" }}>
+                                Access your MAKULAYO account
                             </p>
                         </div>
 
@@ -193,10 +201,18 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         transition={{ duration: 0.2 }}
                     >
                         <div className="text-center mb-8">
-                            <h2 className="text-3xl font-serif font-light text-brand-ivory mb-2">
-                                Join the Few
+                            <h2 
+                                className="mb-2"
+                                style={{
+                                    fontFamily: "var(--font-display)",
+                                    fontSize: "var(--display-sm)",
+                                    letterSpacing: "var(--tracking-display-sm)",
+                                    color: "var(--text)"
+                                }}
+                            >
+                                JOIN THE FEW
                             </h2>
-                            <p className="text-brand-ivory-muted text-sm">
+                            <p style={{ color: "var(--text-muted)", fontSize: "var(--body)" }}>
                                 Create your MAKULAYO account
                             </p>
                         </div>
@@ -291,10 +307,18 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         </button>
 
                         <div className="text-center mb-8">
-                            <h2 className="text-3xl font-serif font-light text-brand-ivory mb-2">
-                                Reset Password
+                            <h2 
+                                className="mb-2"
+                                style={{
+                                    fontFamily: "var(--font-display)",
+                                    fontSize: "var(--display-sm)",
+                                    letterSpacing: "var(--tracking-display-sm)",
+                                    color: "var(--text)"
+                                }}
+                            >
+                                RESET PASSWORD
                             </h2>
-                            <p className="text-brand-ivory-muted text-sm">
+                            <p style={{ color: "var(--text-muted)", fontSize: "var(--body)" }}>
                                 Enter your email and we&apos;ll send you a reset link
                             </p>
                         </div>
@@ -327,8 +351,16 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         <div className="w-16 h-16 bg-brand-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-brand-gold/20">
                             <Mail size={28} className="text-brand-gold" />
                         </div>
-                        <h2 className="text-2xl font-serif font-light text-brand-ivory mb-3">
-                            Check Your Email
+                        <h2 
+                            className="mb-3"
+                            style={{
+                                fontFamily: "var(--font-display)",
+                                fontSize: "var(--display-sm)",
+                                letterSpacing: "var(--tracking-display-sm)",
+                                color: "var(--text)"
+                            }}
+                        >
+                            CHECK YOUR EMAIL
                         </h2>
                         <p className="text-brand-ivory-muted text-sm mb-8 leading-relaxed">
                             We&apos;ve sent a password reset link to<br />
@@ -355,8 +387,16 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         <div className="w-16 h-16 bg-brand-gold/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-brand-gold/20">
                             <Check size={28} className="text-brand-gold" />
                         </div>
-                        <h2 className="text-2xl font-serif font-light text-brand-ivory mb-3">
-                            Verify Your Email
+                        <h2 
+                            className="mb-3"
+                            style={{
+                                fontFamily: "var(--font-display)",
+                                fontSize: "var(--display-sm)",
+                                letterSpacing: "var(--tracking-display-sm)",
+                                color: "var(--text)"
+                            }}
+                        >
+                            VERIFY YOUR EMAIL
                         </h2>
                         <p className="text-brand-ivory-muted text-sm mb-4 leading-relaxed">
                             We&apos;ve sent a confirmation link to<br />
