@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/components/AuthProvider";
 import { X, Eye, EyeOff, Mail, Lock, User, ArrowLeft, Check, AlertCircle } from "lucide-react";
@@ -15,7 +15,7 @@ interface AuthModalProps {
 
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     const { signIn, signUp, resetPassword } = useAuth();
-    const [view, setView] = useState<AuthView>("sign-in");
+    const [view, setView] = useState<AuthView>("sign-up");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -24,6 +24,13 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [error, setError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    useEffect(() => {
+        if (isOpen) {
+            const hasAccount = localStorage.getItem("makulayo_has_account");
+            setView(hasAccount ? "sign-in" : "sign-up");
+        }
+    }, [isOpen]);
 
     const resetForm = () => {
         setEmail("");
@@ -37,7 +44,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
     const handleClose = () => {
         resetForm();
-        setView("sign-in");
         onClose();
     };
 
@@ -57,6 +63,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             setError(err);
             setIsSubmitting(false);
         } else {
+            localStorage.setItem("makulayo_has_account", "true");
             setIsSubmitting(false);
             handleClose();
         }
@@ -82,10 +89,12 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             setError(err);
             setIsSubmitting(false);
         } else if (needsConfirmation) {
+            localStorage.setItem("makulayo_has_account", "true");
             setIsSubmitting(false);
             setView("confirmation-sent");
         } else {
             // Signed in immediately (no email confirmation required)
+            localStorage.setItem("makulayo_has_account", "true");
             setIsSubmitting(false);
             handleClose();
         }
