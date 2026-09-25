@@ -4,10 +4,16 @@ import { products as catalogProducts } from "@/lib/products";
 
 export default async function AdminProductsPage() {
     const admin = createAdminClient();
-    const { data: dbProducts } = await admin
-        .from("products")
-        .select("*")
-        .order("created_at", { ascending: false });
+
+    const [{ data: dbProducts }, { data: catalogOverrides }] = await Promise.all([
+        admin
+            .from("products")
+            .select("*")
+            .order("created_at", { ascending: false }),
+        admin
+            .from("catalog_overrides")
+            .select("*"),
+    ]);
 
     return (
         <div className="pt-2 sm:pt-0">
@@ -34,6 +40,7 @@ export default async function AdminProductsPage() {
             <ProductsAdmin
                 initialProducts={dbProducts ?? []}
                 catalogProducts={catalogProducts}
+                initialOverrides={catalogOverrides ?? []}
             />
         </div>
     );
